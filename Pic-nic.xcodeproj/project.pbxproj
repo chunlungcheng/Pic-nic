@@ -13,6 +13,9 @@
 		DAB69FBD29A7BE57000E963C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB69FBB29A7BE57000E963C /* Main.storyboard */; };
 		DAB69FBF29A7BE5B000E963C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAB69FBE29A7BE5B000E963C /* Assets.xcassets */; };
 		DAB69FC229A7BE5B000E963C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAB69FC029A7BE5B000E963C /* LaunchScreen.storyboard */; };
+		DAB69FCA29A7C1E2000E963C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */; };
+		DAB69FCD29A7C388000E963C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DAB69FCC29A7C388000E963C /* FirebaseAuth */; };
+		DAB69FCF29A7C388000E963C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DAB69FCE29A7C388000E963C /* FirebaseStorage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,7 @@
 		DAB69FBE29A7BE5B000E963C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAB69FC129A7BE5B000E963C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAB69FC329A7BE5B000E963C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAB69FCD29A7C388000E963C /* FirebaseAuth in Frameworks */,
+				DAB69FCF29A7C388000E963C /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,7 @@
 				DAB69FBE29A7BE5B000E963C /* Assets.xcassets */,
 				DAB69FC029A7BE5B000E963C /* LaunchScreen.storyboard */,
 				DAB69FC329A7BE5B000E963C /* Info.plist */,
+				DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */,
 			);
 			path = "Pic-nic";
 			sourceTree = "<group>";
@@ -83,6 +90,10 @@
 			dependencies = (
 			);
 			name = "Pic-nic";
+			packageProductDependencies = (
+				DAB69FCC29A7C388000E963C /* FirebaseAuth */,
+				DAB69FCE29A7C388000E963C /* FirebaseStorage */,
+			);
 			productName = "Pic-nic";
 			productReference = DAB69FB229A7BE57000E963C /* Pic-nic.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +122,9 @@
 				Base,
 			);
 			mainGroup = DAB69FA929A7BE57000E963C;
+			packageReferences = (
+				DAB69FCB29A7C388000E963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = DAB69FB329A7BE57000E963C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,6 +140,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DAB69FC229A7BE5B000E963C /* LaunchScreen.storyboard in Resources */,
+				DAB69FCA29A7C1E2000E963C /* GoogleService-Info.plist in Resources */,
 				DAB69FBF29A7BE5B000E963C /* Assets.xcassets in Resources */,
 				DAB69FBD29A7BE57000E963C /* Main.storyboard in Resources */,
 			);
@@ -356,6 +371,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DAB69FCB29A7C388000E963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DAB69FCC29A7C388000E963C /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAB69FCB29A7C388000E963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		DAB69FCE29A7C388000E963C /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAB69FCB29A7C388000E963C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DAB69FAA29A7BE57000E963C /* Project object */;
 }
