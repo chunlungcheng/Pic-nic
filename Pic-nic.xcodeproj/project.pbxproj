@@ -53,6 +53,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DA53816F29B403C800873AF4 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DAB69FB929A7BE57000E963C /* ViewController.swift */,
+				DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		DA53817029B403F400873AF4 /* App Level */ = {
+			isa = PBXGroup;
+			children = (
+				DAB69FB529A7BE57000E963C /* AppDelegate.swift */,
+				DAB69FB729A7BE57000E963C /* SceneDelegate.swift */,
+			);
+			path = "App Level";
+			sourceTree = "<group>";
+		};
+		DA53817129B4041400873AF4 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				DA53816829B3F68F00873AF4 /* PostCell.swift */,
+				DA53816D29B400CC00873AF4 /* CircularImageView.swift */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
 		DAB69FA929A7BE57000E963C = {
 			isa = PBXGroup;
 			children = (
@@ -72,13 +99,10 @@
 		DAB69FB429A7BE57000E963C /* Pic-nic */ = {
 			isa = PBXGroup;
 			children = (
-				DAB69FB529A7BE57000E963C /* AppDelegate.swift */,
-				DAB69FB729A7BE57000E963C /* SceneDelegate.swift */,
-				DAB69FB929A7BE57000E963C /* ViewController.swift */,
+				DA53817029B403F400873AF4 /* App Level */,
+				DA53816F29B403C800873AF4 /* View Controllers */,
+				DA53817129B4041400873AF4 /* Custom Views */,
 				DAB69FBB29A7BE57000E963C /* Main.storyboard */,
-				DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */,
-				DA53816829B3F68F00873AF4 /* PostCell.swift */,
-				DA53816D29B400CC00873AF4 /* CircularImageView.swift */,
 				DAB69FBE29A7BE5B000E963C /* Assets.xcassets */,
 				DA53816B29B3FFEB00873AF4 /* Evan.jpg */,
 				DA53816629B3F2A500873AF4 /* boots.jpg */,
