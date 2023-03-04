@@ -27,17 +27,17 @@
         <!--View Controller-->
         <scene sceneID="cJs-Ef-ywq">
             <objects>
-                <viewController id="c76-4A-YlM" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3wW-vh-8Yk">
+                <viewController id="c76-4A-YlM" propertyAccessControl="all" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3wW-vh-8Yk" propertyAccessControl="all">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-Lr-0ef">
-                                <rect key="frame" x="0.0" y="103" width="393" height="671"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-Lr-0ef" propertyAccessControl="all">
+                                <rect key="frame" x="-1" y="103" width="393" height="671"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-oq-b5t">
-                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-oq-b5t" propertyAccessControl="all">
+                                <rect key="frame" x="-1" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="Pic-nic" id="UKU-1H-CBw">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="Zs3-J4-24F">
@@ -51,8 +51,8 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="SMf-mL-58x">
-                                <rect key="frame" x="0.0" y="774" width="393" height="44"/>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="SMf-mL-58x" propertyAccessControl="all">
+                                <rect key="frame" x="-1" y="774" width="393" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5ZF-hM-Bm1"/>
@@ -66,13 +66,13 @@
                         <viewLayoutGuide key="safeArea" id="jRB-wR-2aG"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="leading" secondItem="SMf-mL-58x" secondAttribute="leading" id="Cfx-tF-Sey"/>
-                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="top" secondItem="Dy8-oq-b5t" secondAttribute="bottom" id="YdN-zc-7fZ"/>
-                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="trailing" secondItem="mDK-Lr-0ef" secondAttribute="trailing" id="a7C-ka-kXq"/>
-                            <constraint firstItem="SMf-mL-58x" firstAttribute="top" secondItem="mDK-Lr-0ef" secondAttribute="bottom" id="hlM-qq-1Tj"/>
-                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="top" secondItem="jRB-wR-2aG" secondAttribute="top" id="jUd-Y0-Be0"/>
-                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="trailing" secondItem="SMf-mL-58x" secondAttribute="trailing" id="kvJ-JE-vcn"/>
-                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="leading" secondItem="mDK-Lr-0ef" secondAttribute="leading" id="sct-2n-Pca"/>
+                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="leading" secondItem="SMf-mL-58x" secondAttribute="leading" id="Cfx-tF-Sey" propertyAccessControl="all"/>
+                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="top" secondItem="Dy8-oq-b5t" secondAttribute="bottom" id="YdN-zc-7fZ" propertyAccessControl="all"/>
+                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="trailing" secondItem="mDK-Lr-0ef" secondAttribute="trailing" id="a7C-ka-kXq" propertyAccessControl="all"/>
+                            <constraint firstItem="SMf-mL-58x" firstAttribute="top" secondItem="mDK-Lr-0ef" secondAttribute="bottom" id="hlM-qq-1Tj" propertyAccessControl="all"/>
+                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="top" secondItem="jRB-wR-2aG" secondAttribute="top" id="jUd-Y0-Be0" propertyAccessControl="all"/>
+                            <constraint firstItem="mDK-Lr-0ef" firstAttribute="trailing" secondItem="SMf-mL-58x" secondAttribute="trailing" id="kvJ-JE-vcn" propertyAccessControl="all"/>
+                            <constraint firstItem="Dy8-oq-b5t" firstAttribute="leading" secondItem="mDK-Lr-0ef" secondAttribute="leading" id="sct-2n-Pca" propertyAccessControl="all"/>
                         </constraints>
                     </view>
                 </viewController>
