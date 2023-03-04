@@ -7,10 +7,7 @@
 
 import UIKit
 
-private let cellIdentifier = "PostCell"
-
 class HomeViewController: UIViewController {
-    
     
     @IBOutlet weak var tableview: UITableView!
     
@@ -45,6 +42,5 @@ extension HomeViewController: UITableViewDataSource {
         cell.likesLabel.text = post.4
         return cell
     }
-    
     
 }

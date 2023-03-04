@@ -43,8 +43,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="394" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-b3-dKL">
-                                                    <rect key="frame" x="20" y="11.999999999999996" width="40" height="40"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Evan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-b3-dKL" customClass="CircularImageView" customModule="Pic_nic" customModuleProvider="target">
+                                                    <rect key="frame" x="20" y="11" width="40" height="41.333333333333336"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="41.333333333333329" id="Q4b-Qt-8Vw"/>
                                                         <constraint firstAttribute="width" constant="40" id="wCB-cQ-mTb"/>
@@ -198,11 +198,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Evan.jpg" width="1235" height="1235"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="message" catalog="system" width="128" height="116"/>
-        <image name="person.circle.fill" catalog="system" width="128" height="123"/>
         <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
