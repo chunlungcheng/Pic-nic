@@ -10,6 +10,61 @@
     </dependencies>
     <scenes>
         <!--Login View Controller-->
+        <scene sceneID="Opf-IB-jmq">
+            <objects>
+                <viewController id="ucH-d3-pnW" customClass="LoginViewController" customModule="Pic_nic" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yPS-z1-DMm" customClass="SignUpViewController" customModule="Pic_nic" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Pic-Nic" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSe-ba-TDs" customClass="SignUpViewController" customModule="Pic_nic">
+                                <rect key="frame" x="112" y="105" width="168" height="64"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="53"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign Up!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZF-DO-HBW">
+                                <rect key="frame" x="112" y="204" width="168" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="E-MAIL" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HP6-Hj-N6V">
+                                <rect key="frame" x="112" y="275" width="168" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f2P-Be-CrN">
+                                <rect key="frame" x="112" y="341" width="168" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b6m-6J-u49">
+                                <rect key="frame" x="152" y="455" width="88" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Sign-Up"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="CONFIRM PASSWORD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6Nx-k4-jFc">
+                                <rect key="frame" x="112" y="395" width="168" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hbb-D6-7rA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iM4-SV-0dl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="739.69465648854964" y="-863.38028169014092"/>
+        </scene>
+        <!--Login View Controller-->
         <scene sceneID="uHv-f4-a3D">
             <objects>
                 <viewController id="jv7-bF-D7n" customClass="LoginViewController" customModule="Pic_nic" customModuleProvider="target" sceneMemberID="viewController">
@@ -88,14 +143,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="mDK-Lr-0ef">
-                                <rect key="frame" x="-5" y="103" width="394" height="670"/>
+                                <rect key="frame" x="-6" y="103" width="395" height="670"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="400" id="7cm-vZ-Bf2" customClass="PostCell" customModule="Pic_nic" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="394" height="400"/>
+                                        <rect key="frame" x="0.0" y="50" width="395" height="400"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7cm-vZ-Bf2" id="cQE-Zq-ffQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="394" height="400"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="395" height="400"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Evan.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="YOc-b3-dKL" customClass="CircularImageView" customModule="Pic_nic" customModuleProvider="target">
@@ -106,7 +161,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugg-J4-dbX">
-                                                    <rect key="frame" x="326.33333333333331" y="13" width="47.666666666666686" height="34.333333333333336"/>
+                                                    <rect key="frame" x="327.33333333333331" y="13" width="47.666666666666686" height="34.333333333333336"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="ellipsis" catalog="system"/>
                                                 </button>
@@ -128,7 +183,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pAo-WV-RHS">
-                                                    <rect key="frame" x="0.0" y="56" width="394" height="264"/>
+                                                    <rect key="frame" x="0.0" y="56" width="395" height="264"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="264" id="3kd-je-WdC"/>
                                                     </constraints>
@@ -151,7 +206,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hmt-DU-FSS">
-                                                    <rect key="frame" x="222" y="328" width="151.33333333333337" height="34.333333333333314"/>
+                                                    <rect key="frame" x="223" y="328" width="151.33333333333337" height="34.333333333333314"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hgd-iv-IPV">
                                                             <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="34.333333333333336"/>
@@ -205,7 +260,7 @@
                                 </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dy8-oq-b5t" propertyAccessControl="all">
-                                <rect key="frame" x="-5" y="59" width="394" height="44"/>
+                                <rect key="frame" x="-6" y="59" width="395" height="44"/>
                                 <items>
                                     <navigationItem title="Pic-nic" id="UKU-1H-CBw">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="Zs3-J4-24F">
@@ -220,7 +275,7 @@
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translucent="NO" id="SMf-mL-58x" propertyAccessControl="all">
-                                <rect key="frame" x="-5" y="773" width="394" height="43"/>
+                                <rect key="frame" x="-6" y="773" width="395" height="43"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="5ZF-hM-Bm1"/>
