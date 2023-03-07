@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858C829B66BD70093BCC6 /* LoginViewController.swift */; };
 		602858CB29B66EE00093BCC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858CA29B66EE00093BCC6 /* SignUpViewController.swift */; };
+		12661FD529B557F20086DE5A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661FD429B557F20086DE5A /* CameraViewController.swift */; };
 		DA14F8EF29B3E15B00C92BB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */; };
 		DA53816729B3F2A500873AF4 /* boots.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA53816629B3F2A500873AF4 /* boots.jpg */; };
 		DA53816929B3F68F00873AF4 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53816829B3F68F00873AF4 /* PostCell.swift */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		602858C829B66BD70093BCC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		602858CA29B66EE00093BCC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		12661FD429B557F20086DE5A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		DA53816629B3F2A500873AF4 /* boots.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = boots.jpg; sourceTree = "<group>"; };
 		DA53816829B3F68F00873AF4 /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB69FB929A7BE57000E963C /* ViewController.swift */,
+				12661FD429B557F20086DE5A /* CameraViewController.swift */,
 				DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */,
 				602858C829B66BD70093BCC6 /* LoginViewController.swift */,
 				602858CA29B66EE00093BCC6 /* SignUpViewController.swift */,
@@ -206,6 +209,7 @@
 				DA53816E29B400CC00873AF4 /* CircularImageView.swift in Sources */,
 				DAB69FB629A7BE57000E963C /* AppDelegate.swift in Sources */,
 				DAB69FB829A7BE57000E963C /* SceneDelegate.swift in Sources */,
+				12661FD529B557F20086DE5A /* CameraViewController.swift in Sources */,
 				DA14F8EF29B3E15B00C92BB2 /* HomeViewController.swift in Sources */,
 				DA53816929B3F68F00873AF4 /* PostCell.swift in Sources */,
 			);
