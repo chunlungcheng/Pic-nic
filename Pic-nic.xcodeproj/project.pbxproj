@@ -27,6 +27,7 @@
 		DAB69FCA29A7C1E2000E963C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */; };
 		DAB69FCD29A7C388000E963C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = DAB69FCC29A7C388000E963C /* FirebaseAuth */; };
 		DAB69FCF29A7C388000E963C /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = DAB69FCE29A7C388000E963C /* FirebaseStorage */; };
+		DAF3A51329B84AB100968A9A /* Comments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAF3A51229B84AB100968A9A /* Comments.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		DAB69FC129A7BE5B000E963C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAB69FC329A7BE5B000E963C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DAF3A51229B84AB100968A9A /* Comments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Comments.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,9 +120,7 @@
 				DA53817029B403F400873AF4 /* App Level */,
 				DA53816F29B403C800873AF4 /* View Controllers */,
 				DA53817129B4041400873AF4 /* Custom Views */,
-				DA8E276229B82A1700931CB7 /* Post.storyboard */,
-				DA8E276029B829D300931CB7 /* Login.storyboard */,
-				DA8E275E29B8299300931CB7 /* Home.storyboard */,
+				DAF3A51429B84C4C00968A9A /* Storyboards */,
 				DAB69FBE29A7BE5B000E963C /* Assets.xcassets */,
 				DA53816B29B3FFEB00873AF4 /* Evan.jpg */,
 				DA53816629B3F2A500873AF4 /* boots.jpg */,
@@ -129,6 +129,17 @@
 				DAB69FC929A7C1E1000E963C /* GoogleService-Info.plist */,
 			);
 			path = "Pic-nic";
+			sourceTree = "<group>";
+		};
+		DAF3A51429B84C4C00968A9A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				DA8E276229B82A1700931CB7 /* Post.storyboard */,
+				DAF3A51229B84AB100968A9A /* Comments.storyboard */,
+				DA8E276029B829D300931CB7 /* Login.storyboard */,
+				DA8E275E29B8299300931CB7 /* Home.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,6 +207,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DAF3A51329B84AB100968A9A /* Comments.storyboard in Resources */,
 				DA8E276129B829D300931CB7 /* Login.storyboard in Resources */,
 				DA8E275F29B8299300931CB7 /* Home.storyboard in Resources */,
 				DAB69FC229A7BE5B000E963C /* LaunchScreen.storyboard in Resources */,
