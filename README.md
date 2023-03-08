@@ -22,9 +22,8 @@ Chun-Lung Cheng (25%)
     - code (table view, text field, post button)
 
 
-John Park (x%)  
-- example task
-- example task
+John Park (15%)  
+- Designed and developed settings screen
 
 ## Differences  
 - User Authentication (Email and Password) was completed, but we had an original plan of including a profile picture to associate with each user. That extra screen and Firebase connection will be implemented in the next phase
