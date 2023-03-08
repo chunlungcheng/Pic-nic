@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1253642729B839000042C8EE /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1253642629B839000042C8EE /* CommentViewController.swift */; };
 		12661FD529B557F20086DE5A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661FD429B557F20086DE5A /* CameraViewController.swift */; };
 		602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858C829B66BD70093BCC6 /* LoginViewController.swift */; };
 		602858CB29B66EE00093BCC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858CA29B66EE00093BCC6 /* SignUpViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1253642629B839000042C8EE /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		12661FD429B557F20086DE5A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		602858C829B66BD70093BCC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		602858CA29B66EE00093BCC6 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				DAB69FB929A7BE57000E963C /* ViewController.swift */,
+				1253642629B839000042C8EE /* CommentViewController.swift */,
 				12661FD429B557F20086DE5A /* CameraViewController.swift */,
 				DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */,
 				602858C829B66BD70093BCC6 /* LoginViewController.swift */,
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1253642729B839000042C8EE /* CommentViewController.swift in Sources */,
 				602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */,
 				DAB69FBA29A7BE57000E963C /* ViewController.swift in Sources */,
 				602858CB29B66EE00093BCC6 /* SignUpViewController.swift in Sources */,
