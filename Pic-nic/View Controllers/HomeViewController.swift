@@ -26,7 +26,7 @@ class HomeViewController: UIViewController {
     }
     
     func checkIfUserIsLoggedIn() {
-        if Auth.auth().currentUser != nil {
+        if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             if let loginVC = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier) as? LoginViewController {
                 loginVC.delegate = self

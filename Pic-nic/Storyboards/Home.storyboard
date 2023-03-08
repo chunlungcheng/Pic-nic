@@ -92,6 +92,9 @@
                                                             <rect key="frame" x="50.666666666666686" y="0.0" width="52.333333333333343" height="34.333333333333336"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="message" catalog="system"/>
+                                                            <connections>
+                                                                <segue destination="8B1-nd-SGn" kind="show" id="iBl-J6-fP9"/>
+                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-xv-5oS">
                                                             <rect key="frame" x="103" y="0.0" width="48.333333333333343" height="34.333333333333336"/>
@@ -156,6 +159,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Xik-eh-CFH"/>
                                     <barButtonItem id="zFz-iI-Iut">
                                         <imageReference key="image" image="plus.rectangle.fill" catalog="system" symbolScale="large"/>
+                                        <connections>
+                                            <segue destination="VVL-4M-7Pz" kind="show" id="nvX-41-yeI"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nmL-97-uen"/>
                                 </items>
@@ -180,6 +186,26 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6y-mE-azx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="878.62595419847321" y="3.5211267605633805"/>
+        </scene>
+        <!--Comments-->
+        <scene sceneID="eET-Oe-Alq">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Comments" id="8B1-nd-SGn" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="oi4-AW-cIG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yjo-hH-a9s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1426" y="80"/>
+        </scene>
+        <!--Post-->
+        <scene sceneID="OzT-d7-cuj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Post" id="VVL-4M-7Pz" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="g8g-0z-CE1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LhN-fa-1Yr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="852" y="433"/>
         </scene>
     </scenes>
     <resources>
