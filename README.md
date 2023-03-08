@@ -12,9 +12,15 @@ Arjun Hegde (25%)
 - Designed and Developed the User Sign Up Screen
 - Connected Firebase Authentication services to both Login and User Sign Up 
 
-Chun-Lung Cheng (x%)  
-- example task
-- example task
+Chun-Lung Cheng (25%)  
+- Camera Screen
+    - Layout
+    - code (Camera, switch, UIImage, post button)
+
+- Comment Screen
+    - Layout
+    - code (table view, text field, post button)
+
 
 John Park (x%)  
 - example task
@@ -22,3 +28,7 @@ John Park (x%)
 
 ## Differences  
 - User Authentication (Email and Password) was completed, but we had an original plan of including a profile picture to associate with each user. That extra screen and Firebase connection will be implemented in the next phase
+
+- Users now can take a photo and see it on the Camera screen, but we haven’t implemented the Firebase upload. 
+
+- We decided to implement the Comment screen early.
