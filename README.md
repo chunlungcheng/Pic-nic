@@ -7,9 +7,10 @@ Isaiah Suarez (x%)
 - example task
 - example task  
 
-Arjun Hegde (x%)  
-- example task
-- example task
+Arjun Hegde (25%)  
+- Designed and Developed the Login Screen
+- Designed and Developed the User Sign Up Screen
+- Connected Firebase Authentication services to both Login and User Sign Up 
 
 Chun-Lung Cheng (x%)  
 - example task
@@ -18,5 +19,6 @@ Chun-Lung Cheng (x%)
 John Park (x%)  
 - example task
 - example task
+
 ## Differences  
-List differences between planned deliverables and what was actually delivered.
+- User Authentication (Email and Password) was completed, but we had an original plan of including a profile picture to associate with each user. That extra screen and Firebase connection will be implemented in the next phase
