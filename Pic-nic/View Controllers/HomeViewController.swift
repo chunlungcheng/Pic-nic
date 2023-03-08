@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Firebase
 
 class HomeViewController: UIViewController {
     
@@ -20,8 +21,27 @@ class HomeViewController: UIViewController {
         tableview.dataSource = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        checkIfUserIsLoggedIn()
+    }
+    
+    func checkIfUserIsLoggedIn() {
+        if Auth.auth().currentUser != nil {
+            let storyboard = UIStoryboard(name: "Login", bundle: nil)
+            if let loginVC = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier) as? LoginViewController {
+                loginVC.delegate = self
+                present(loginVC, animated: true)
+            }
+           
+        }
+    }
 }
 
+extension HomeViewController: LoginViewControllerDelegate {
+    func loginViewControllerLoggedInSuccessfully(loginViewController: UIViewController?) {
+        loginViewController?.dismiss(animated: true)
+    }
+}
 extension HomeViewController: UITableViewDelegate {
     
 }

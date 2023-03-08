@@ -13,6 +13,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var SignUpConfirmPasswordTextField: UITextField!
     @IBOutlet weak var SignUpPasswordTextField: UITextField!
     @IBOutlet weak var SignUpEmailTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -34,6 +35,7 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     print("Success")
+                    self.dismiss(animated: true)
                 }
             }
         }
