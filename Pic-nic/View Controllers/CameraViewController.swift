@@ -6,13 +6,20 @@
 //
 
 import UIKit
+import FirebaseFirestore
+import Firebase
 
 class CameraViewController: UIViewController {
 
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var locationSwitch: UISwitch!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var photoTaken: UIImageView!
+    @IBOutlet weak var postButton: UIButton!
+    
     var hasTaken = false
+    let db = Firestore.firestore()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,14 +28,24 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let alertController = UIAlertController(title: nil, message: "Device has no camera.", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "Alright", style: .default, handler: { (alert: UIAlertAction!) in
-            })
+            let alertController = UIAlertController(title: "Camera unavailable", message: "Device is overheating or device is simulator", preferredStyle: .alert)
             
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else if !hasTaken{
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            let camRoll = UIAlertAction(title: "Choose from library", style: .default) { _ in
+                let library = UIImagePickerController()
+                library.sourceType = .photoLibrary
+                library.delegate = self
+                self.present(library, animated: true)
+            }
+            
+            alertController.addAction(camRoll)
+            alertController.addAction(cancelAction)
+
+            present(alertController, animated: true, completion: nil)
+            
+        } else if !hasTaken {
             hasTaken = true
             let camera = UIImagePickerController()
             camera.sourceType = .camera
@@ -46,8 +63,8 @@ class CameraViewController: UIViewController {
     }
     
     @IBAction func postButtonPressed(_ sender: UIButton) {
-//        _ = navigationController?.popToRootViewController(animated: true)
-        self.dismiss(animated: true)
+        guard let image = photoTaken.image else {return}
+        uploadImage(image: image)
     }
 
     @IBAction func cancelButtonPressed(_ sender: Any) {
@@ -59,11 +76,55 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {return}
         photoTaken.image = image
+        postButton.isEnabled = true
+        
+    }
+    
+    func uploadImage(image: UIImage) {
+        spinner.startAnimating()
+        self.postButton.isHidden = true
+        self.locationSwitch.isEnabled = false
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.0) else { return }
+        let location = GeoPoint(latitude: 30.2672, longitude: -97.7431) // TODO: Unhardcode from Austin
+        
+        let documentData: [String: Any] = [
+            "imageData": imageData,
+            "date": Timestamp(),
+            "userID": Firebase.Auth.auth().currentUser?.uid ?? "nil",
+            "location": locationSwitch.isOn ? location : "nil"
+        ]
+        
+        db.collection("locations").document("Austin").collection("posts").addDocument(data: documentData) { error in
+            self.spinner.stopAnimating()
+            self.postButton.isHidden = false
+            self.locationSwitch.isEnabled = true
+            
+            if let error = error {
+                print("Error adding document: \(error)")
+                self.presentErrorMessage(title: "Unable to post", message: error.localizedDescription)
+                
+            } else {
+                print("Document added")
+                self.dismiss(animated: true)
+            }
+        }
+    }
+    
+    func presentErrorMessage(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true, completion: nil)
     }
 }
