@@ -71,12 +71,12 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM7-UJ-XjW">
+                            <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM7-UJ-XjW">
                                 <rect key="frame" x="16" y="735" width="355" height="34"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Post">
                                     <backgroundConfiguration key="background">
-                                        <color key="backgroundColor" systemColor="systemGray2Color"/>
+                                        <color key="backgroundColor" systemColor="linkColor"/>
                                     </backgroundConfiguration>
                                     <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
                                 </buttonConfiguration>
@@ -84,6 +84,9 @@
                                     <action selector="postButtonPressed:" destination="2aZ-TY-SIO" eventType="touchUpInside" id="his-g8-pVo"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="IPm-C3-E96">
+                                <rect key="frame" x="186" y="742" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Umo-eE-xv2"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,6 +96,8 @@
                             <constraint firstItem="c0f-zs-PpA" firstAttribute="centerX" secondItem="Qp4-22-5tp" secondAttribute="centerX" id="5dA-0F-LUV"/>
                             <constraint firstItem="9gD-Lq-4Tr" firstAttribute="centerY" secondItem="Reu-SX-VuF" secondAttribute="centerY" id="7R9-4g-TbF"/>
                             <constraint firstItem="Umo-eE-xv2" firstAttribute="bottom" secondItem="hnp-6z-dnb" secondAttribute="bottom" constant="114" id="CcQ-Oc-NV3"/>
+                            <constraint firstItem="IPm-C3-E96" firstAttribute="centerY" secondItem="eM7-UJ-XjW" secondAttribute="centerY" id="F3J-G6-af0"/>
+                            <constraint firstItem="IPm-C3-E96" firstAttribute="centerX" secondItem="Qp4-22-5tp" secondAttribute="centerX" id="FLS-av-d3g"/>
                             <constraint firstItem="jU8-wv-rY5" firstAttribute="centerY" secondItem="9gD-Lq-4Tr" secondAttribute="centerY" id="FeU-t1-fnb"/>
                             <constraint firstItem="hnp-6z-dnb" firstAttribute="top" secondItem="Qp4-22-5tp" secondAttribute="bottom" constant="8" id="Feu-60-W4S"/>
                             <constraint firstItem="hnp-6z-dnb" firstAttribute="leading" secondItem="Umo-eE-xv2" secondAttribute="leading" constant="14" id="I4h-q1-kuF"/>
@@ -101,6 +106,7 @@
                             <constraint firstItem="c0f-zs-PpA" firstAttribute="leading" secondItem="KvA-mL-oy8" secondAttribute="leading" id="OZR-qR-PuA"/>
                             <constraint firstItem="9gD-Lq-4Tr" firstAttribute="leading" secondItem="Umo-eE-xv2" secondAttribute="leading" constant="64" id="QyE-F2-RVx"/>
                             <constraint firstItem="Qp4-22-5tp" firstAttribute="top" secondItem="jU8-wv-rY5" secondAttribute="bottom" constant="8" id="SRV-br-Doi"/>
+                            <constraint firstItem="IPm-C3-E96" firstAttribute="leading" secondItem="Umo-eE-xv2" secondAttribute="leading" constant="186" id="WBX-VE-uiK"/>
                             <constraint firstItem="eM7-UJ-XjW" firstAttribute="leading" secondItem="fPt-ed-FeV" secondAttribute="leadingMargin" id="YeP-AK-NVl"/>
                             <constraint firstItem="jU8-wv-rY5" firstAttribute="leading" secondItem="Umo-eE-xv2" secondAttribute="leading" constant="20" id="ZlW-an-UAz"/>
                             <constraint firstItem="Qp4-22-5tp" firstAttribute="leading" secondItem="fPt-ed-FeV" secondAttribute="leadingMargin" constant="-15" id="c5e-gr-aai"/>
@@ -120,6 +126,8 @@
                         <outlet property="locationLabel" destination="9gD-Lq-4Tr" id="EPM-g8-VKU"/>
                         <outlet property="locationSwitch" destination="Reu-SX-VuF" id="58X-n2-Fmo"/>
                         <outlet property="photoTaken" destination="c0f-zs-PpA" id="D2I-0Y-Ze2"/>
+                        <outlet property="postButton" destination="eM7-UJ-XjW" id="BGy-z6-eQy"/>
+                        <outlet property="spinner" destination="IPm-C3-E96" id="FUv-AT-5X4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VM7-Ez-4If" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -132,6 +140,9 @@
         <image name="location.fill" catalog="system" width="128" height="119"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
             <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
