@@ -16,6 +16,7 @@ class CameraViewController: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var photoTaken: UIImageView!
     @IBOutlet weak var postButton: UIButton!
+    
     var hasTaken = false
     let db = Firestore.firestore()
     
@@ -27,14 +28,24 @@ class CameraViewController: UIViewController {
         super.viewWillAppear(animated)
         
         if !UIImagePickerController.isSourceTypeAvailable(.camera) {
-            let alertController = UIAlertController(title: nil, message: "Device has no camera.", preferredStyle: .alert)
             
-            let okAction = UIAlertAction(title: "Alright", style: .default, handler: { (alert: UIAlertAction!) in
-            })
+            let alertController = UIAlertController(title: "Camera unavailable", message: "Device is overheating or device is simulator", preferredStyle: .alert)
             
-            alertController.addAction(okAction)
-            self.present(alertController, animated: true, completion: nil)
-        } else if !hasTaken{
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            let camRoll = UIAlertAction(title: "Choose from library", style: .default) { _ in
+                let library = UIImagePickerController()
+                library.sourceType = .photoLibrary
+                library.delegate = self
+                self.present(library, animated: true)
+            }
+            
+            alertController.addAction(camRoll)
+            alertController.addAction(cancelAction)
+
+            present(alertController, animated: true, completion: nil)
+            
+        } else if !hasTaken {
             hasTaken = true
             let camera = UIImagePickerController()
             camera.sourceType = .camera
@@ -65,6 +76,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -78,18 +90,23 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     func uploadImage(image: UIImage) {
         spinner.startAnimating()
         self.postButton.isHidden = true
+        self.locationSwitch.isEnabled = false
+        
         guard let imageData = image.jpegData(compressionQuality: 0.0) else { return }
-        let location = GeoPoint(latitude: 30.2672, longitude: -97.7431)
+        let location = GeoPoint(latitude: 30.2672, longitude: -97.7431) // TODO: Unhardcode from Austin
         
         let documentData: [String: Any] = [
             "imageData": imageData,
             "date": Timestamp(),
-            "userID": Firebase.Auth.auth().currentUser?.uid ?? "nil"
+            "userID": Firebase.Auth.auth().currentUser?.uid ?? "nil",
+            "location": locationSwitch.isOn ? location : "nil"
         ]
         
         db.collection("locations").document("Austin").collection("posts").addDocument(data: documentData) { error in
             self.spinner.stopAnimating()
             self.postButton.isHidden = false
+            self.locationSwitch.isEnabled = true
+            
             if let error = error {
                 print("Error adding document: \(error)")
                 self.presentErrorMessage(title: "Unable to post", message: error.localizedDescription)
