@@ -19,9 +19,11 @@ class CameraViewController: UIViewController {
     
     var hasTaken = false
     let db = Firestore.firestore()
+    let imagePicker = UIImagePickerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,10 +36,8 @@ class CameraViewController: UIViewController {
             let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
             
             let camRoll = UIAlertAction(title: "Choose from library", style: .default) { _ in
-                let library = UIImagePickerController()
-                library.sourceType = .photoLibrary
-                library.delegate = self
-                self.present(library, animated: true)
+                self.imagePicker.sourceType = .photoLibrary
+                self.present(self.imagePicker, animated: true)
             }
             
             alertController.addAction(camRoll)
@@ -47,10 +47,8 @@ class CameraViewController: UIViewController {
             
         } else if !hasTaken {
             hasTaken = true
-            let camera = UIImagePickerController()
-            camera.sourceType = .camera
-            camera.delegate = self
-            present(camera, animated: true)
+            self.imagePicker.sourceType = .camera
+            present(self.imagePicker, animated: true)
         }
     }
 
@@ -88,11 +86,22 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
     }
     
     func uploadImage(image: UIImage) {
-        spinner.startAnimating()
-        self.postButton.isHidden = true
-        self.locationSwitch.isEnabled = false
+        freezeUI()
         
-        guard let imageData = image.jpegData(compressionQuality: 0.0) else { return }
+        // Scale the image dimensions
+        let scale = UIScreen.main.scale
+        let newSize = CGSize(width: image.size.width / 3, height: image.size.height / 3)
+        UIGraphicsBeginImageContextWithOptions(newSize, false, scale)
+        image.draw(in: CGRect(origin: CGPoint.zero, size: newSize))
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        guard let scaledImage = scaledImage, let imageData = scaledImage.jpegData(compressionQuality: 0.0) else {
+            unfreezeUI()
+            presentErrorMessage(title: "Unable to scale image", message: "Unable to scale down image. Please try a different one")
+            return
+        }
+        
         let location = GeoPoint(latitude: 30.2672, longitude: -97.7431) // TODO: Unhardcode from Austin
         
         let documentData: [String: Any] = [
@@ -103,9 +112,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
         ]
         
         db.collection("locations").document("Austin").collection("posts").addDocument(data: documentData) { error in
-            self.spinner.stopAnimating()
-            self.postButton.isHidden = false
-            self.locationSwitch.isEnabled = true
+            self.unfreezeUI()
             
             if let error = error {
                 print("Error adding document: \(error)")
@@ -116,6 +123,18 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
                 self.dismiss(animated: true)
             }
         }
+    }
+    
+    func freezeUI() {
+        spinner.startAnimating()
+        self.postButton.isHidden = true
+        self.locationSwitch.isEnabled = false
+    }
+    
+    func unfreezeUI() {
+        spinner.stopAnimating()
+        self.postButton.isHidden = false
+        self.locationSwitch.isEnabled = true
     }
     
     func presentErrorMessage(title: String, message: String) {
