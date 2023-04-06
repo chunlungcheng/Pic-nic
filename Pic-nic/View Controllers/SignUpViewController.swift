@@ -8,10 +8,13 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import FirebaseFirestore
 import FirebaseStorage
 
 class SignUpViewController: UIViewController {
     
+    @IBOutlet weak var SignUpFirstNameTextField: UITextField!
+    @IBOutlet weak var SignUpLastNameTextField: UITextField!
     @IBOutlet weak var SignUpConfirmPasswordTextField: UITextField!
     @IBOutlet weak var SignUpPasswordTextField: UITextField!
     @IBOutlet weak var SignUpEmailTextField: UITextField!
@@ -27,7 +30,7 @@ class SignUpViewController: UIViewController {
         guard let confirmPassword = SignUpConfirmPasswordTextField.text else { return }
         let matchingPasswords = (password == confirmPassword)
 
-        if(matchingPasswords){
+        if(matchingPasswords && SignUpFirstNameTextField.text != nil && SignUpLastNameTextField.text != nil){
             Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
                 if let err = error {
                     print(email)
@@ -37,6 +40,24 @@ class SignUpViewController: UIViewController {
                 }
                 else{
                     print("Success")
+                    let profilePictureImage = self.profilePictureButton.currentImage!
+                    var imageData: Data
+                    if profilePictureImage.pngData() != nil {
+                        imageData = profilePictureImage.pngData()!
+                    } else {
+                        imageData = profilePictureImage.jpegData(compressionQuality: 1.0)!
+                    }
+                    let profilePictureEncoded = imageData.base64EncodedString()
+                    let db = Firestore.firestore()
+                    let userRef = db.collection("users").document(authResult!.user.uid)
+                    let data: [String: Any] = [
+                        "firstName": self.SignUpFirstNameTextField.text!,
+                        "lastName": self.SignUpLastNameTextField.text!,
+                        "profilePicture": profilePictureEncoded,
+                        "signupDate": Timestamp(date: Date()),
+                        "userId": authResult!.user.uid
+                    ]
+                    userRef.setData(data)
                     self.dismiss(animated: true)
                 }
             }
