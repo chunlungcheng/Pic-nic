@@ -78,7 +78,32 @@ class SettingViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        
+        if let user = Auth.auth().currentUser {
+            let db = Firestore.firestore()
+            let userID = user.uid
+            let docRef = db.collection("users").document(userID)
+            if !firstnameTextField.text!.isEmpty{
+                docRef.updateData([
+                    "firstName": firstnameTextField.text!
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            } else if !lastnameTextField.text!.isEmpty{
+                docRef.updateData([
+                    "lastName": lastnameTextField.text!
+                ]) { err in
+                    if let err = err {
+                        print("Error updating document: \(err)")
+                    } else {
+                        print("Document successfully updated")
+                    }
+                }
+            }
+        }
     }
     
     // Sign out and return back to Login screen
