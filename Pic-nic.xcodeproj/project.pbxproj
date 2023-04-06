@@ -11,6 +11,7 @@
 		12661FD529B557F20086DE5A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661FD429B557F20086DE5A /* CameraViewController.swift */; };
 		602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858C829B66BD70093BCC6 /* LoginViewController.swift */; };
 		602858CB29B66EE00093BCC6 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858CA29B66EE00093BCC6 /* SignUpViewController.swift */; };
+		607EB1D229DEAADF00903149 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 607EB1D129DEAADF00903149 /* FirebaseStorage */; };
 		DA14F8EF29B3E15B00C92BB2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA14F8EE29B3E15B00C92BB2 /* HomeViewController.swift */; };
 		DA53816729B3F2A500873AF4 /* boots.jpg in Resources */ = {isa = PBXBuildFile; fileRef = DA53816629B3F2A500873AF4 /* boots.jpg */; };
 		DA53816929B3F68F00873AF4 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA53816829B3F68F00873AF4 /* PostCell.swift */; };
@@ -61,12 +62,20 @@
 			files = (
 				DAE3F01F29DB32E300A69B2D /* FirebaseAuth in Frameworks */,
 				DAE3F02129DB32E300A69B2D /* FirebaseFirestore in Frameworks */,
+				607EB1D229DEAADF00903149 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		607EB1D029DEAADF00903149 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DA53816F29B403C800873AF4 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +112,7 @@
 			children = (
 				DAB69FB429A7BE57000E963C /* Pic-nic */,
 				DAB69FB329A7BE57000E963C /* Products */,
+				607EB1D029DEAADF00903149 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -161,6 +171,7 @@
 			packageProductDependencies = (
 				DAE3F01E29DB32E300A69B2D /* FirebaseAuth */,
 				DAE3F02029DB32E300A69B2D /* FirebaseFirestore */,
+				607EB1D129DEAADF00903149 /* FirebaseStorage */,
 			);
 			productName = "Pic-nic";
 			productReference = DAB69FB229A7BE57000E963C /* Pic-nic.app */;
@@ -458,6 +469,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		607EB1D129DEAADF00903149 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DAE3F01D29DB32E300A69B2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		DAE3F01E29DB32E300A69B2D /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DAE3F01D29DB32E300A69B2D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
