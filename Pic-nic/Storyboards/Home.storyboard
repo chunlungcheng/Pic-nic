@@ -159,7 +159,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="gearshape.fill" catalog="system"/>
                                                 <connections>
-                                                    <segue destination="0XQ-72-tgg" kind="show" id="Rfb-f9-O6e"/>
+                                                    <segue destination="0XQ-72-tgg" kind="presentation" modalPresentationStyle="fullScreen" id="Rfb-f9-O6e"/>
                                                 </connections>
                                             </button>
                                         </barButtonItem>
