@@ -7,13 +7,15 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseStorage
 
 class SignUpViewController: UIViewController {
     
     @IBOutlet weak var SignUpConfirmPasswordTextField: UITextField!
     @IBOutlet weak var SignUpPasswordTextField: UITextField!
     @IBOutlet weak var SignUpEmailTextField: UITextField!
-    
+    @IBOutlet weak var profilePictureButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -39,5 +41,26 @@ class SignUpViewController: UIViewController {
                 }
             }
         }
+    }
+   
+    @IBAction func profilePictureSelector(_ sender: Any) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true // Enable editing
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+}
+
+extension SignUpViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            // Set the button's image to the selected image
+            profilePictureButton.setImage(selectedImage, for: .normal)
+            // Make the button circular
+            profilePictureButton.layer.cornerRadius = min(profilePictureButton.frame.size.width, profilePictureButton.frame.size.height) / 2
+            profilePictureButton.clipsToBounds = true
+        }
+        self.dismiss(animated: true, completion: nil)
     }
 }
