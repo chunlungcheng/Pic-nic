@@ -13,7 +13,20 @@ Arjun Hegde (33%)
 - TBD
 
 Chun-Lung Cheng (33%)  
-- TBD
+- Setting Screen
+    - Rebuilt the setting screen UI
+    - View Controller
+- Buttons
+    - Cancel: return back to the Home screen
+    - Save: save changes to the Firestore
+    - Sign Out: sign out and segue to the Login screen
+- User Information Text Fields (Firstname, Lastname, and Email 
+    - placeholder is updated by the information retrieved from
+Firestore in real-time
+    - only first name and last name are editable
+- ImageView (profile picture)
+    - The profile picture retrieved from Firestore
+    - Tapping on the picture can change the profile picture
 
 
 John Park (0%)  
@@ -22,3 +35,4 @@ John Park (0%)
 
 ## Differences  
 - Home screen not implemented due to group member going MIA
+- The email placeholder currently holds the ‘user.uid’ because we don’t have email stored in Firestore yet. We will add it later.
