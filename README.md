@@ -10,7 +10,11 @@ Isaiah Suarez (33%)
 
 
 Arjun Hegde (33%)  
-- TBD
+- Altered sign up screen to take more information including first and last name
+
+- Created the functionality that allows users to select a profile picture from the camera roll
+
+- Utilized Firestore (Cloud Firebase) to hold a collection of all newly added users with fields including their name and profile picture
 
 Chun-Lung Cheng (33%)  
 - Setting Screen
