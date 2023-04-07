@@ -3,35 +3,22 @@ See what is going on in your city! Discover things to do or sights to see from o
 You can share, like, or comment on any photo you see to get more detail. Each photo is geotagged so you can see where it was taken. Think of Instagram but for only your city, and the feed is deleted at the end of each day. 
 
 ## Contributions  
-Isaiah Suarez (35%)  
-- Designed and developed the home screen with table view
-- Connected the view controllers together
-- setup Firebase
-- Merged team members code, handled conflicts
-
-Arjun Hegde (25%)  
-- Designed and Developed the Login Screen
-- Designed and Developed the User Sign Up Screen
-- Connected Firebase Authentication services to both Login and User Sign Up 
-
-Chun-Lung Cheng (25%)  
-- Camera Screen
-    - Layout
-    - code (Camera, switch, UIImage, post button)
-
-- Comment Screen
-    - Layout
-    - code (table view, text field, post button)
+Isaiah Suarez (33%)  
+- Implemented upload function
+- Photo is downsized, compressed, and uploaded to Firestore
+- Created tasks for group members
 
 
-John Park (15%)  
-- Designed and developed settings screen
+Arjun Hegde (33%)  
+-  
+
+Chun-Lung Cheng (33%)  
+
+
+
+John Park (0%)  
+- Was supposed to implement the Home screen but has stopped responding
+- Talked to Professor Bulko in OH
 
 ## Differences  
-- User Authentication (Email and Password) was completed, but we had an original plan of including a profile picture to associate with each user. That extra screen and Firebase connection will be implemented in the next phase
-
-- Users now can take a photo and see it on the Camera screen, but we haven’t implemented the Firebase upload. 
-
-- All the screens exist, but have mock data, (except the login screen which has real logins) we decided to do the Firebase next sprint
-
-- We decided to implement the Comment screen early.
+- Home screen not implemented due to group member going MIA
