@@ -10,10 +10,10 @@ Isaiah Suarez (33%)
 
 
 Arjun Hegde (33%)  
--  
+- TBD
 
 Chun-Lung Cheng (33%)  
-
+- TBD
 
 
 John Park (0%)  
