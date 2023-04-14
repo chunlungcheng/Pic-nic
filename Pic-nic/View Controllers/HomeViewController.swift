@@ -16,16 +16,23 @@ extension Notification.Name {
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
+    let refreshControl = UIRefreshControl()
     
     var datasource = [Post]()
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableview.addSubview(refreshControl)
+        refreshControl.addTarget(self, action: #selector(refreshData), for: .valueChanged)
         tableview.delegate = self
         tableview.dataSource = self
         downloadPosts()
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name.updateTableView, object: nil)
+    }
+    
+    @objc func refreshData(_ sender: Any) {
+        downloadPosts()
     }
     
     @objc func handleNotification(_ notification: Notification) {
@@ -58,6 +65,7 @@ class HomeViewController: UIViewController {
             print(posts)
             self.datasource = posts
             self.datasource = self.datasource.sorted { $0.date?.dateValue() ?? Date.now  > $1.date?.dateValue() ?? Date.now}
+            self.refreshControl.endRefreshing()
             self.tableview.reloadData()
         }
     }
@@ -98,12 +106,24 @@ extension HomeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
         cell.nameLabel.text = "Name"
-        cell.locationLabel.text = "Location"
+        cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
 //        cell.profileImageView.image = UIImage(named: post.5)
-        cell.timeLabel.text = "time"
+        
+        // Format date
+       
+        cell.timeLabel.text = dateString(date: post.date?.dateValue() ?? Date.now)
+        
         cell.likesLabel.text = "likes"
         return cell
+    }
+    
+    func dateString(date: Date) -> String? {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.maximumUnitCount = 1
+        formatter.allowedUnits = [.day, .hour, .minute]
+        return (formatter.string(from: date, to: Date.now) ?? "unknown") + " ago"
     }
     
 }
