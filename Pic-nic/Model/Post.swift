@@ -7,9 +7,10 @@
 
 import Foundation
 import UIKit
+import FirebaseFirestore
 
 struct Post {
-    var date: String
+    var date: Timestamp?
     var image: UIImage
     var location: String
     var userID: String
