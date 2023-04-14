@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
             
             for document in documents {
                 let data = document.data()
-                let date = data["date"] as? String ?? ""
+                let date = data["date"] as? Timestamp
                 let imageData = data["imageData"] as? Data
                 let location = data["location"] as? String ?? ""
                 let userID = data["userID"] as? String ?? ""
@@ -57,6 +57,7 @@ class HomeViewController: UIViewController {
             // Do something with the users array
             print(posts)
             self.datasource = posts
+            self.datasource = self.datasource.sorted { $0.date?.dateValue() ?? Date.now  > $1.date?.dateValue() ?? Date.now}
             self.tableview.reloadData()
         }
     }
