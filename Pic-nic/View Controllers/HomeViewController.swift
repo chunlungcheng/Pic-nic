@@ -9,6 +9,10 @@ import UIKit
 import Firebase
 import FirebaseFirestore
 
+extension Notification.Name {
+    static let updateTableView = Notification.Name("com.example.updateTableView")
+}
+
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
@@ -16,13 +20,15 @@ class HomeViewController: UIViewController {
     var datasource = [Post]()
     let db = Firestore.firestore()
     
-    /// Set to true if user is not logged in when home screen is presented
-    var needsToDownload = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableview.delegate = self
         tableview.dataSource = self
+        downloadPosts()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name.updateTableView, object: nil)
+    }
+    
+    @objc func handleNotification(_ notification: Notification) {
         downloadPosts()
     }
     
@@ -37,7 +43,6 @@ class HomeViewController: UIViewController {
             var posts = [Post]()
             
             for document in documents {
-                let id = document.documentID
                 let data = document.data()
                 let date = data["date"] as? String ?? ""
                 let imageData = data["imageData"] as? Data
@@ -61,21 +66,11 @@ class HomeViewController: UIViewController {
         checkIfUserIsLoggedIn()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("We back")
-        if needsToDownload {
-            downloadPosts()
-            needsToDownload = false
-        }
-    }
-    
     func checkIfUserIsLoggedIn() {
         if Auth.auth().currentUser == nil {
             let storyboard = UIStoryboard(name: "Login", bundle: nil)
             if let loginVC = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier) as? LoginViewController {
                 loginVC.delegate = self
-                needsToDownload = true
                 present(loginVC, animated: true)
             }
         } else {

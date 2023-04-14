@@ -59,6 +59,7 @@ class SignUpViewController: UIViewController {
                     ]
                     userRef.setData(data)
                     self.dismiss(animated: true)
+                    NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
                 }
             }
         }
