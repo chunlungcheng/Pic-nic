@@ -39,6 +39,7 @@ class LoginViewController: UIViewController {
             else{
                 print("Success")
                 self.delegate?.loginViewControllerLoggedInSuccessfully(loginViewController: self)
+                NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
             }
         }
     }
