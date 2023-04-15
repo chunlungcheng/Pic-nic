@@ -55,9 +55,11 @@ class HomeViewController: UIViewController {
                 let imageData = data["imageData"] as? Data
                 let location = data["location"] as? String ?? ""
                 let userID = data["userID"] as? String ?? ""
-                
+                let likes = data["likes"] as? Int ?? 0
+                let likeBy = data["likeBy"] as? [String] ?? [String]()
+                let documentID = document.documentID
                 if let imageData = imageData, let image = UIImage(data: imageData) {
-                    posts.append(Post(date: date, image: image, location: location, userID: userID))
+                    posts.append(Post(date: date, image: image, location: location, userID: userID, likes: likes, documentID: documentID, likeBy: likeBy))
                 }
             }
             
@@ -89,17 +91,89 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
-        cell.nameLabel.text = "Name"
+        let docRef = db.collection("users").document(post.userID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                // set name
+                let firstname = data?["firstName"] as? String ?? ""
+                let lastname = data?["lastName"] as? String ?? ""
+                let name = firstname + " " + lastname
+                cell.nameLabel.text = name
+                // set profile picture
+                if let imageData = data?["profilePicture"] as? Data {
+                    if imageData.count != 0 {
+                        // Create an image from the data
+                        let image = UIImage(data: imageData)
+                        let resizedImage = image!.resizeImage(targetSize: CGSize(width: 40, height: 40))
+                        // Use the image as needed
+                        cell.profileImageView.image = resizedImage
+                    }
+                } else {
+                    print("Invalid image")
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
         cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
-//        cell.profileImageView.image = UIImage(named: post.5)
         
         // Format date
-       
         cell.timeLabel.text = dateString(date: post.date?.dateValue() ?? Date.now)
         
-        cell.likesLabel.text = "likes"
+        // set likes
+        cell.likesLabel.text = "\(post.likes) likes"
+        
+        if self.datasource[indexPath.row].likeBy.contains(Auth.auth().currentUser!.uid){
+            cell.likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            cell.likesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        cell.likesButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
         return cell
+    }
+    
+    @objc func likeButtonTapped(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview?.superview as? PostCell, let indexPath = tableview.indexPath(for: cell) else { return }
+        
+        let post = datasource[indexPath.row]
+        let currentUserID = Auth.auth().currentUser?.uid ?? ""
+        let docRef = db.collection("locations").document("Austin").collection("posts").document(post.documentID)
+        docRef.getDocument { (document, error) in
+            if let document = document, document.exists {
+                let data = document.data()
+                // Handle the user data here
+                let likeBy = data?["likeBy"] as? [String] ?? [String]()
+                let hasLiked = likeBy.contains(currentUserID)
+                if hasLiked {
+                    let updatedLikeBy = post.likeBy.filter { $0 != currentUserID }
+                    docRef.updateData(["likes": post.likes - 1, "likeBy": updatedLikeBy]) { error in
+                        if let error = error {
+                            print("Error updating document: \(error)")
+                        } else {
+                            self.datasource[indexPath.row].likes -= 1
+                            self.datasource[indexPath.row].likeBy = updatedLikeBy
+                            self.tableview.reloadRows(at: [indexPath], with: .none)
+                        }
+                    }
+                } else {
+                    let updatedLikeBy = post.likeBy + [currentUserID]
+                    docRef.updateData(["likes": post.likes + 1, "likeBy": updatedLikeBy]) { error in
+                        if let error = error {
+                            print("Error updating document: \(error)")
+                            
+                        } else {
+                            self.datasource[indexPath.row].likes += 1
+                            self.datasource[indexPath.row].likeBy = updatedLikeBy
+                            self.tableview.reloadRows(at: [indexPath], with: .none)
+                        }
+                    }
+                }
+            } else {
+                print("Document does not exist")
+            }
+        }
     }
     
     func dateString(date: Date) -> String? {

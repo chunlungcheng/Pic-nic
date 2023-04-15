@@ -97,7 +97,7 @@
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xX0-Db-fxN">
                                                             <rect key="frame" x="0.0" y="0.0" width="50.666666666666664" height="34.333333333333336"/>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system"/>
+                                                            <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NeU-9b-FkR">
                                                             <rect key="frame" x="50.666666666666686" y="0.0" width="52.333333333333343" height="34.333333333333336"/>
@@ -138,6 +138,7 @@
                                             <constraint firstAttribute="trailing" secondItem="twx-Fw-Jno" secondAttribute="trailing" constant="20.666666666666629" id="ESp-t6-UDF"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="likesButton" destination="xX0-Db-fxN" id="6r9-IE-g9l"/>
                                             <outlet property="likesLabel" destination="XZK-zc-bdP" id="h0T-HU-uNI"/>
                                             <outlet property="locationLabel" destination="1yY-2p-zlL" id="OQj-iS-1kJ"/>
                                             <outlet property="nameLabel" destination="gE9-KC-CS3" id="gTH-pW-RDO"/>
@@ -226,7 +227,7 @@
         <image name="Evan.jpg" width="1235" height="1235"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
-        <image name="heart.fill" catalog="system" width="128" height="107"/>
+        <image name="heart" catalog="system" width="128" height="107"/>
         <image name="message" catalog="system" width="128" height="116"/>
         <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>

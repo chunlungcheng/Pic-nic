@@ -14,4 +14,7 @@ struct Post {
     var image: UIImage
     var location: String
     var userID: String
+    var likes: Int
+    var documentID: String
+    var likeBy: [String]
 }

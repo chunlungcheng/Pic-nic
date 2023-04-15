@@ -16,6 +16,7 @@ class SettingViewController: UIViewController {
     @IBOutlet weak var profilePic: UIImageView!
     
     let signOutSegueID = "signOutSegue"
+    var profileChanged = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class SettingViewController: UIViewController {
                             self.profilePic.image = resizedImage
                         }
                     } else {
-                        print("Invalid base64 string")
+                        print("Invalid image")
                     }
                 } else {
                     print("Document does not exist")
@@ -90,9 +91,9 @@ class SettingViewController: UIViewController {
                     "firstName": firstnameTextField.text!
                 ]) { err in
                     if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
+                        let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
+                        controller.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(controller, animated: true)
                     }
                 }
             } else if !lastnameTextField.text!.isEmpty{
@@ -100,12 +101,32 @@ class SettingViewController: UIViewController {
                     "lastName": lastnameTextField.text!
                 ]) { err in
                     if let err = err {
-                        print("Error updating document: \(err)")
-                    } else {
-                        print("Document successfully updated")
+                        let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
+                        controller.addAction(UIAlertAction(title: "OK", style: .default))
+                        self.present(controller, animated: true)
                     }
                 }
+            } else if profileChanged{
+                var imageData:Data!
+                if let image = self.profilePic.image{
+                    imageData = image.jpegData(compressionQuality: 0.1)
+                    docRef.updateData([
+                        "profilePicture": imageData!
+                    ]) { err in
+                        if let err = err {
+                            let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
+                            controller.addAction(UIAlertAction(title: "OK", style: .default))
+                            self.present(controller, animated: true)
+                        }
+                    }
+                }
+            } else {
+                return
             }
+            NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
+            let controller = UIAlertController(title:"Successfully Updated", message: "User information successfully updated", preferredStyle: .alert)
+            controller.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(controller, animated: true)
         }
     }
     
@@ -170,6 +191,7 @@ extension SettingViewController: UIImagePickerControllerDelegate, UINavigationCo
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             profilePic.image = selectedImage
+            profileChanged = true
         }
         self.dismiss(animated: true, completion: nil)
     }

@@ -108,7 +108,9 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
             "imageData": imageData,
             "date": Timestamp(),
             "userID": Firebase.Auth.auth().currentUser?.uid ?? "nil",
-            "location": locationSwitch.isOn ? location : "nil"
+            "location": locationSwitch.isOn ? location : "nil",
+            "likes": 0,
+            "likeBy": [String]()
         ]
         
         db.collection("locations").document("Austin").collection("posts").addDocument(data: documentData) { error in
