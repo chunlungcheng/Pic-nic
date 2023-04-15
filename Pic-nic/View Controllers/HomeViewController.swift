@@ -72,27 +72,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        checkIfUserIsLoggedIn()
     }
     
-    func checkIfUserIsLoggedIn() {
-        if Auth.auth().currentUser == nil {
-            let storyboard = UIStoryboard(name: "Login", bundle: nil)
-            if let loginVC = storyboard.instantiateViewController(withIdentifier: LoginViewController.identifier) as? LoginViewController {
-                loginVC.delegate = self
-                present(loginVC, animated: true)
-            }
-        } else {
-            print(Auth.auth().currentUser?.email)
-        }
-    }
 }
 
-extension HomeViewController: LoginViewControllerDelegate {
-    func loginViewControllerLoggedInSuccessfully(loginViewController: UIViewController?) {
-        loginViewController?.dismiss(animated: true)
-    }
-}
+
 extension HomeViewController: UITableViewDelegate {
     
 }

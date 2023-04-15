@@ -8,9 +8,6 @@
 import UIKit
 import Firebase
 
-protocol LoginViewControllerDelegate: AnyObject {
-    func loginViewControllerLoggedInSuccessfully(loginViewController: UIViewController?)
-}
 
 class LoginViewController: UIViewController {
     static let identifier = "LoginViewController"
@@ -18,11 +15,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var LogInEmailTextField: UITextField!
     @IBOutlet weak var LogInPasswordTextField: UITextField!
     
-    weak var delegate: LoginViewControllerDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        Auth.auth().addStateDidChangeListener() {
+            auth, user in
+            if user != nil {
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+            }
+        }
+        LogInPasswordTextField.isSecureTextEntry = true
     }
 
 
@@ -32,13 +34,13 @@ class LoginViewController: UIViewController {
         
         Auth.auth().signIn(withEmail: email, password: password){authResult, error in
             if let err = error {
-                print(email)
-                print(password)
-                print("Error")
+                let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
+                controller.addAction(UIAlertAction(title: "OK", style: .default))
+                self.present(controller, animated: true)
             }
             else{
                 print("Success")
-                self.delegate?.loginViewControllerLoggedInSuccessfully(loginViewController: self)
+                self.performSegue(withIdentifier: "loginSegue", sender: nil)
                 NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
             }
         }
