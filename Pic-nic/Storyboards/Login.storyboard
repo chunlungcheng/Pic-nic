@@ -49,7 +49,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JN-3q-0fA">
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4JN-3q-0fA">
                                 <rect key="frame" x="97" y="519" width="199" height="197"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -96,6 +96,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2j8-eY-5TC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1000.763358778626" y="-863.38028169014092"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="K6O-jR-jeJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Home" id="sn6-5M-eeH" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="2Vh-g7-HA4"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nT9-nx-J5E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="17" y="-1319"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="cAF-PX-sOg">
@@ -156,6 +166,7 @@
                     <connections>
                         <outlet property="LogInEmailTextField" destination="pVC-KV-Px3" id="bba-u2-N1M"/>
                         <outlet property="LogInPasswordTextField" destination="XaZ-cV-26a" id="kYt-XJ-fIT"/>
+                        <segue destination="sn6-5M-eeH" kind="presentation" identifier="loginSegue" modalPresentationStyle="fullScreen" id="sD0-Wf-ZER"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiN-f9-7pr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

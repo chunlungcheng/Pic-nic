@@ -22,6 +22,7 @@ class SettingViewController: UIViewController {
         // To make the profile pic circular
         profilePic.layer.cornerRadius = profilePic.frame.size.width / 2
         profilePic.clipsToBounds = true
+        profilePic.contentMode = .scaleAspectFill
         profilePic.isUserInteractionEnabled = true
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
@@ -44,13 +45,15 @@ class SettingViewController: UIViewController {
                 if let document = document, document.exists {
                     let data = document.data()
                     // Handle the user data here
-                    self.emailTextField.placeholder = data?["userId"] as? String ?? ""
-                    let imageEncode = data?["profilePicture"] as? String ?? ""
-                    if let imageData = Data(base64Encoded: imageEncode, options: .ignoreUnknownCharacters) {
-                        // Create an image from the data
-                        let image = UIImage(data: imageData)
-                        // Use the image as needed
-                        self.profilePic.image = image
+                    self.emailTextField.placeholder = data?["email"] as? String ?? ""
+                    if let imageData = data?["profilePicture"] as? Data {
+                        if imageData.count != 0 {
+                            // Create an image from the data
+                            let image = UIImage(data: imageData)
+                            let resizedImage = image!.resizeImage(targetSize: CGSize(width: 300, height: 300))
+                            // Use the image as needed
+                            self.profilePic.image = resizedImage
+                        }
                     } else {
                         print("Invalid base64 string")
                     }
@@ -110,10 +113,51 @@ class SettingViewController: UIViewController {
     @IBAction func signoutButtonPressed(_ sender: Any) {
         do {
             try Auth.auth().signOut()
-            performSegue(withIdentifier: signOutSegueID, sender: nil)
+            performSegue(withIdentifier: "signOutSegue", sender: nil)
         } catch {
             print("Sign out error")
         }
+    }
+    
+    // Delete user account and related information from Firestore
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        let user = Auth.auth().currentUser
+           let userID = user?.uid
+
+           let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account? This action cannot be undone.", preferredStyle: .alert)
+
+           let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+           alertController.addAction(cancelAction)
+
+           let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+               // Delete user's data in Firestore
+               let db = Firestore.firestore()
+               let docRef = db.collection("users").document(userID!)
+               docRef.delete { error in
+                   if let error = error {
+                       print("Error deleting user data:", error.localizedDescription)
+                       let errorAlert = UIAlertController(title: "Error", message: "Failed to delete user data. Please try again later.", preferredStyle: .alert)
+                       errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                       self.present(errorAlert, animated: true, completion: nil)
+                   } else {
+                       print("User data deleted successfully.")
+                   }
+               }
+               // Delete user's account in Firebase Auth
+               user?.delete { error in
+                   if let error = error {
+                       print("Error deleting user account:", error.localizedDescription)
+                       let errorAlert = UIAlertController(title: "Error", message: "Failed to delete user account. Please try again later.", preferredStyle: .alert)
+                       errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                       self.present(errorAlert, animated: true, completion: nil)
+                   } else {
+                       print("User account deleted successfully.")
+                       self.performSegue(withIdentifier: "signOutSegue", sender: nil)
+                   }
+               }
+           }
+           alertController.addAction(deleteAction)
+           present(alertController, animated: true, completion: nil)
     }
     
     // Called when the user clicks on the view outside of the UITextField
@@ -130,4 +174,5 @@ extension SettingViewController: UIImagePickerControllerDelegate, UINavigationCo
         self.dismiss(animated: true, completion: nil)
     }
 }
+
 
