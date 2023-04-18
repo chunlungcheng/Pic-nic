@@ -85,9 +85,24 @@ extension HomeViewController: UITableViewDataSource {
         return datasource.count
     }
     
+    @objc func handleDoubleTap(sender: UITapGestureRecognizer) {
+        if let cell = sender.view?.superview as? PostCell {
+            cell.animateHeart()
+            // Like post if not already liked
+            let indexPath = tableview.indexPath(for: cell)
+            if !self.datasource[indexPath?.row ?? 0].likeBy.contains(Auth.auth().currentUser!.uid)  {
+                likeButtonTapped(cell.likesButton)
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
+        // Add double tap
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(sender:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        cell.contentView.addGestureRecognizer(doubleTapGesture)
         
         cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
@@ -106,7 +121,7 @@ extension HomeViewController: UITableViewDataSource {
         cell.likesButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
         
         // set three dot menu
-        if Auth.auth().currentUser?.uid == post.userID{
+        if Auth.auth().currentUser?.uid == post.userID {
             let deleteAction = UIAction(
                 title: "Delete",
                 image: UIImage(systemName: "trash"),

@@ -18,4 +18,18 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var likesButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
+    
+    @IBOutlet weak var heartImageView: UIImageView!
+    
+    func animateHeart() {
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {
+            self.heartImageView.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            self.heartImageView.alpha = 1.0
+        }) { finished in
+            UIView.animate(withDuration: 0.1, delay: 0, options: .allowUserInteraction, animations: {
+                self.heartImageView.alpha = 0.0
+                self.heartImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            })
+        }
+    }
 }

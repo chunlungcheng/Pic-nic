@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lAY-VM-eRn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="lAY-VM-eRn">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -114,6 +113,14 @@
                                                         </button>
                                                     </subviews>
                                                 </stackView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="d1C-1J-vR1">
+                                                    <rect key="frame" x="135" y="139.66666666666666" width="125" height="121.99999999999997"/>
+                                                    <color key="tintColor" red="0.97620290519999997" green="0.96178978680000005" blue="0.90979647640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="125" id="0SA-8c-wXZ"/>
+                                                        <constraint firstAttribute="width" constant="125" id="U5A-MJ-fon"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="opo-3X-H1w" firstAttribute="leading" secondItem="rWF-cJ-Yah" secondAttribute="leading" id="19P-Ab-qGp"/>
@@ -129,8 +136,10 @@
                                                 <constraint firstItem="GdF-vI-CWd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xad-po-7q7" secondAttribute="trailing" constant="8" symbolic="YES" id="mAZ-Ci-Fcv"/>
                                                 <constraint firstItem="Xd0-bv-ZMJ" firstAttribute="leading" secondItem="rWF-cJ-Yah" secondAttribute="leading" constant="20" symbolic="YES" id="mqO-PA-OOy"/>
                                                 <constraint firstItem="GdF-vI-CWd" firstAttribute="top" secondItem="rWF-cJ-Yah" secondAttribute="top" constant="13" id="n8L-9m-xTd"/>
+                                                <constraint firstItem="d1C-1J-vR1" firstAttribute="centerY" secondItem="rWF-cJ-Yah" secondAttribute="centerY" id="p4S-iL-eaV"/>
                                                 <constraint firstItem="P5U-P7-pcs" firstAttribute="leading" secondItem="rWF-cJ-Yah" secondAttribute="leading" constant="20.000000000000004" id="sEm-JV-Sug"/>
                                                 <constraint firstItem="opo-3X-H1w" firstAttribute="leading" secondItem="rWF-cJ-Yah" secondAttribute="leading" id="tDe-Xv-eZt"/>
+                                                <constraint firstItem="d1C-1J-vR1" firstAttribute="centerX" secondItem="rWF-cJ-Yah" secondAttribute="centerX" id="wnk-J5-amZ"/>
                                                 <constraint firstAttribute="trailing" secondItem="opo-3X-H1w" secondAttribute="trailing" id="xT3-Yj-w69"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -139,6 +148,7 @@
                                         </constraints>
                                         <connections>
                                             <outlet property="editButton" destination="GdF-vI-CWd" id="2SP-Yf-TkX"/>
+                                            <outlet property="heartImageView" destination="d1C-1J-vR1" id="Ma7-jo-dXl"/>
                                             <outlet property="likesButton" destination="xX0-Db-fxN" id="6r9-IE-g9l"/>
                                             <outlet property="likesLabel" destination="XZK-zc-bdP" id="h0T-HU-uNI"/>
                                             <outlet property="locationLabel" destination="1yY-2p-zlL" id="OQj-iS-1kJ"/>
@@ -229,6 +239,7 @@
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
+        <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="message" catalog="system" width="128" height="116"/>
         <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
