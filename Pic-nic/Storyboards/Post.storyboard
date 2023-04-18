@@ -49,7 +49,7 @@
                             </switch>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="i. Photo disappear after 24 hrs ii. Only visible in your city" translatesAutoresizingMaskIntoConstraints="NO" id="hnp-6z-dnb">
                                 <rect key="frame" x="14" y="575" width="361" height="80"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.97620290519999997" green="0.96178978680000005" blue="0.90979647640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="wd5-cO-CgM"/>
                                 </constraints>
@@ -59,7 +59,7 @@
                             </textView>
                             <navigationBar contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KvA-mL-oy8">
                                 <rect key="frame" x="0.0" y="59" width="392" height="44"/>
-                                <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                                <color key="barTintColor" red="0.97620290519999997" green="0.96178978680000005" blue="0.90979647640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <items>
                                     <navigationItem title="Post" id="aXZ-Ug-bYy">
                                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="EZz-vQ-Vmh">
@@ -88,7 +88,7 @@
                             </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Umo-eE-xv2"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97620290519999997" green="0.96178978680000005" blue="0.90979647640000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="eM7-UJ-XjW" secondAttribute="trailing" constant="6" id="3tN-8F-QjF"/>
                             <constraint firstItem="c0f-zs-PpA" firstAttribute="leading" secondItem="Umo-eE-xv2" secondAttribute="leading" id="5Ya-9f-x1x"/>
