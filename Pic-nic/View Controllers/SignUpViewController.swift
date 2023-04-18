@@ -82,10 +82,11 @@ class SignUpViewController: UIViewController {
                 }
                 let controller = UIAlertController(title:"Singup Successfully", message: "You have been signed up!", preferredStyle: .alert)
                 let okAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
-                    self.dismiss(animated: true, completion: nil)
+//                    self.dismiss(animated: true, completion: nil)
+                    self.performSegue(withIdentifier: "doneSignUpSegue", sender: nil)
                 }
                 controller.addAction(okAction)
-                self.present(controller, animated: true)
+                self.present(controller, animated: true, completion: nil)
                 NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
             }
         }
