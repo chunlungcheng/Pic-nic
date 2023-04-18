@@ -17,4 +17,5 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var likesButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
 }

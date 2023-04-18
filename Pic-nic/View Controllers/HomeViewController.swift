@@ -56,7 +56,6 @@ class HomeViewController: UIViewController {
                 let imageData = data["imageData"] as? Data
                 let location = data["location"] as? String ?? ""
                 let userID = data["userID"] as? String ?? ""
-                let likes = data["likes"] as? Int ?? 0
                 let likeBy = data["likeBy"] as? [String] ?? [String]()
                 let documentID = document.documentID
                 if let imageData = imageData, let image = UIImage(data: imageData) {
@@ -89,7 +88,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
-
+        
         cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
         
@@ -106,6 +105,30 @@ extension HomeViewController: UITableViewDataSource {
         }
         cell.likesButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
         
+        // set three dot menu
+        let deleteAction = UIAction(
+            title: "Delete",
+            image: UIImage(systemName: "trash"),
+            attributes: .destructive) { action in
+                //delete the post from the firebase and table view
+                let postsRef = self.db.collection("locations").document("Austin").collection("posts").document(post.documentID)
+                postsRef.delete { error in
+                    if let error = error {
+                        print("Error deleting user data:", error.localizedDescription)
+                        let errorAlert = UIAlertController(title: "Error", message: "Failed to delete the post. Please try again later.", preferredStyle: .alert)
+                        errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(errorAlert, animated: true, completion: nil)
+                    } else {
+                        self.datasource.remove(at: indexPath.row)
+                        self.tableview.reloadData()
+                        print("Post deleted successfully.")
+                    }
+                }
+            }
+        let editMenu = UIMenu(title: "", children: [deleteAction])
+        cell.editButton.menu = editMenu
+        cell.editButton.showsMenuAsPrimaryAction = true
+        
         guard post.userName == nil else {
             // We've previosuly downloaded this
             cell.profileImageView.image = post.profilePicture
@@ -113,6 +136,7 @@ extension HomeViewController: UITableViewDataSource {
             return cell
         }
         
+        // retrive the post from the Firebase and add it into the table view
         let docRef = db.collection("users").document(post.userID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {

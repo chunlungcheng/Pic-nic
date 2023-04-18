@@ -138,6 +138,7 @@
                                             <constraint firstAttribute="trailing" secondItem="twx-Fw-Jno" secondAttribute="trailing" constant="20.666666666666629" id="ESp-t6-UDF"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="editButton" destination="GdF-vI-CWd" id="2SP-Yf-TkX"/>
                                             <outlet property="likesButton" destination="xX0-Db-fxN" id="6r9-IE-g9l"/>
                                             <outlet property="likesLabel" destination="XZK-zc-bdP" id="h0T-HU-uNI"/>
                                             <outlet property="locationLabel" destination="1yY-2p-zlL" id="OQj-iS-1kJ"/>
