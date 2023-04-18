@@ -109,7 +109,6 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
             "date": Timestamp(),
             "userID": Firebase.Auth.auth().currentUser?.uid ?? "nil",
             "location": locationSwitch.isOn ? location : "nil",
-            "likes": 0,
             "likeBy": [String]()
         ]
         

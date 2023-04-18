@@ -29,6 +29,7 @@ class HomeViewController: UIViewController {
         tableview.dataSource = self
         downloadPosts()
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name.updateTableView, object: nil)
+        tableview.allowsSelection = false
     }
     
     @objc func refreshData(_ sender: Any) {
@@ -59,12 +60,9 @@ class HomeViewController: UIViewController {
                 let likeBy = data["likeBy"] as? [String] ?? [String]()
                 let documentID = document.documentID
                 if let imageData = imageData, let image = UIImage(data: imageData) {
-                    posts.append(Post(date: date, image: image, location: location, userID: userID, likes: likes, documentID: documentID, likeBy: likeBy))
+                    posts.append(Post(date: date, image: image, location: location, userID: userID, documentID: documentID, likeBy: likeBy))
                 }
             }
-            
-            // Do something with the users array
-            print(posts)
             self.datasource = posts
             self.datasource = self.datasource.sorted { $0.date?.dateValue() ?? Date.now  > $1.date?.dateValue() ?? Date.now}
             self.refreshControl.endRefreshing()
@@ -91,6 +89,30 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
+
+        cell.locationLabel.text = "Austin"
+        cell.postImageView.image = post.image
+        
+        // Format date
+        cell.timeLabel.text = dateString(date: post.date?.dateValue() ?? Date.now)
+        
+        // set likes
+        cell.likesLabel.text = "\(post.likeBy.count) likes"
+        
+        if self.datasource[indexPath.row].likeBy.contains(Auth.auth().currentUser!.uid){
+            cell.likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            cell.likesButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+        cell.likesButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
+        
+        guard post.userName == nil else {
+            // We've previosuly downloaded this
+            cell.profileImageView.image = post.profilePicture
+            cell.nameLabel.text = post.userName
+            return cell
+        }
+        
         let docRef = db.collection("users").document(post.userID)
         docRef.getDocument { (document, error) in
             if let document = document, document.exists {
@@ -100,6 +122,7 @@ extension HomeViewController: UITableViewDataSource {
                 let lastname = data?["lastName"] as? String ?? ""
                 let name = firstname + " " + lastname
                 cell.nameLabel.text = name
+                self.datasource[indexPath.row].userName = name
                 // set profile picture
                 if let imageData = data?["profilePicture"] as? Data {
                     if imageData.count != 0 {
@@ -108,6 +131,7 @@ extension HomeViewController: UITableViewDataSource {
                         let resizedImage = image!.resizeImage(targetSize: CGSize(width: 40, height: 40))
                         // Use the image as needed
                         cell.profileImageView.image = resizedImage
+                        self.datasource[indexPath.row].profilePicture = resizedImage
                     }
                 } else {
                     print("Invalid image")
@@ -116,27 +140,13 @@ extension HomeViewController: UITableViewDataSource {
                 print("Document does not exist")
             }
         }
-        cell.locationLabel.text = "Austin"
-        cell.postImageView.image = post.image
-        
-        // Format date
-        cell.timeLabel.text = dateString(date: post.date?.dateValue() ?? Date.now)
-        
-        // set likes
-        cell.likesLabel.text = "\(post.likes) likes"
-        
-        if self.datasource[indexPath.row].likeBy.contains(Auth.auth().currentUser!.uid){
-            cell.likesButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
-        } else {
-            cell.likesButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
-        cell.likesButton.addTarget(self, action: #selector(likeButtonTapped(_:)), for: .touchUpInside)
+      
         return cell
     }
     
     @objc func likeButtonTapped(_ sender: UIButton) {
         guard let cell = sender.superview?.superview?.superview as? PostCell, let indexPath = tableview.indexPath(for: cell) else { return }
-        
+        print("like button tapped")
         let post = datasource[indexPath.row]
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
         let docRef = db.collection("locations").document("Austin").collection("posts").document(post.documentID)
@@ -148,25 +158,26 @@ extension HomeViewController: UITableViewDataSource {
                 let hasLiked = likeBy.contains(currentUserID)
                 if hasLiked {
                     let updatedLikeBy = post.likeBy.filter { $0 != currentUserID }
-                    docRef.updateData(["likes": post.likes - 1, "likeBy": updatedLikeBy]) { error in
+                    docRef.updateData(["likes": post.likeBy.count - 1, "likeBy": updatedLikeBy]) { error in
                         if let error = error {
                             print("Error updating document: \(error)")
                         } else {
-                            self.datasource[indexPath.row].likes -= 1
                             self.datasource[indexPath.row].likeBy = updatedLikeBy
-                            self.tableview.reloadRows(at: [indexPath], with: .none)
+                            cell.likesLabel.text = "\(post.likeBy.count) likes"
+                            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                            
                         }
                     }
                 } else {
                     let updatedLikeBy = post.likeBy + [currentUserID]
-                    docRef.updateData(["likes": post.likes + 1, "likeBy": updatedLikeBy]) { error in
+                    docRef.updateData(["likes": post.likeBy.count + 1, "likeBy": updatedLikeBy]) { error in
                         if let error = error {
                             print("Error updating document: \(error)")
                             
                         } else {
-                            self.datasource[indexPath.row].likes += 1
                             self.datasource[indexPath.row].likeBy = updatedLikeBy
-                            self.tableview.reloadRows(at: [indexPath], with: .none)
+                            cell.likesLabel.text = "\(post.likeBy.count) likes"
+                            sender.setImage(UIImage(systemName: "heart"), for: .normal)
                         }
                     }
                 }
