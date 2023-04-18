@@ -122,6 +122,7 @@ extension CameraViewController: UIImagePickerControllerDelegate, UINavigationCon
             } else {
                 print("Document added")
                 self.dismiss(animated: true)
+                NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
             }
         }
     }

@@ -121,7 +121,6 @@ extension HomeViewController: UITableViewDataSource {
                 let firstname = data?["firstName"] as? String ?? ""
                 let lastname = data?["lastName"] as? String ?? ""
                 let name = firstname + " " + lastname
-                cell.nameLabel.text = name
                 self.datasource[indexPath.row].userName = name
                 // set profile picture
                 if let imageData = data?["profilePicture"] as? Data {
@@ -130,9 +129,9 @@ extension HomeViewController: UITableViewDataSource {
                         let image = UIImage(data: imageData)
                         let resizedImage = image!.resizeImage(targetSize: CGSize(width: 40, height: 40))
                         // Use the image as needed
-                        cell.profileImageView.image = resizedImage
                         self.datasource[indexPath.row].profilePicture = resizedImage
                     }
+                    self.tableview.reloadRows(at: [indexPath], with: .automatic)
                 } else {
                     print("Invalid image")
                 }
@@ -156,28 +155,32 @@ extension HomeViewController: UITableViewDataSource {
                 // Handle the user data here
                 let likeBy = data?["likeBy"] as? [String] ?? [String]()
                 let hasLiked = likeBy.contains(currentUserID)
+                
+                
                 if hasLiked {
+                    // Post was already liked by user, time to unlike it
                     let updatedLikeBy = post.likeBy.filter { $0 != currentUserID }
-                    docRef.updateData(["likes": post.likeBy.count - 1, "likeBy": updatedLikeBy]) { error in
+                    docRef.updateData(["likeBy": updatedLikeBy]) { error in
                         if let error = error {
                             print("Error updating document: \(error)")
                         } else {
                             self.datasource[indexPath.row].likeBy = updatedLikeBy
-                            cell.likesLabel.text = "\(post.likeBy.count) likes"
-                            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                            cell.likesLabel.text = "\(self.datasource[indexPath.row].likeBy.count) likes"
+                            sender.setImage(UIImage(systemName: "heart"), for: .normal)
                             
                         }
                     }
                 } else {
+                    // Post was not already liked by user, time to like it
                     let updatedLikeBy = post.likeBy + [currentUserID]
-                    docRef.updateData(["likes": post.likeBy.count + 1, "likeBy": updatedLikeBy]) { error in
+                    docRef.updateData(["likeBy": updatedLikeBy]) { error in
                         if let error = error {
                             print("Error updating document: \(error)")
                             
                         } else {
                             self.datasource[indexPath.row].likeBy = updatedLikeBy
-                            cell.likesLabel.text = "\(post.likeBy.count) likes"
-                            sender.setImage(UIImage(systemName: "heart"), for: .normal)
+                            cell.likesLabel.text = "\(self.datasource[indexPath.row].likeBy.count) likes"
+                            sender.setImage(UIImage(systemName: "heart.fill"), for: .normal)
                         }
                     }
                 }
