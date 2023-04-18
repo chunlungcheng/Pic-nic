@@ -25,6 +25,7 @@ class SettingViewController: UIViewController {
         profilePic.clipsToBounds = true
         profilePic.contentMode = .scaleAspectFill
         profilePic.isUserInteractionEnabled = true
+        emailTextField.isUserInteractionEnabled = false
         let db = Firestore.firestore()
         if let user = Auth.auth().currentUser {
             let userID = user.uid
@@ -142,7 +143,7 @@ class SettingViewController: UIViewController {
     
     // Delete user account and related information from Firestore
     @IBAction func deleteButtonPressed(_ sender: Any) {
-        let user = Auth.auth().currentUser
+           let user = Auth.auth().currentUser
            let userID = user?.uid
 
            let alertController = UIAlertController(title: "Delete Account", message: "Are you sure you want to delete your account? This action cannot be undone.", preferredStyle: .alert)
@@ -154,6 +155,7 @@ class SettingViewController: UIViewController {
                // Delete user's data in Firestore
                let db = Firestore.firestore()
                let docRef = db.collection("users").document(userID!)
+               let postCollection = db.collection("locations").document("Austin").collection("posts")
                docRef.delete { error in
                    if let error = error {
                        print("Error deleting user data:", error.localizedDescription)
@@ -174,6 +176,26 @@ class SettingViewController: UIViewController {
                    } else {
                        print("User account deleted successfully.")
                        self.performSegue(withIdentifier: "signOutSegue", sender: nil)
+                   }
+               }
+               postCollection.getDocuments { (snapshot, error) in
+                   if let error = error {
+                       print("Error fetching documents: \(error)")
+                       return
+                   }
+                   guard let documents = snapshot?.documents else { return }
+                   
+                   for document in documents {
+                       let data = document.data()
+                       let postUserID = data["userID"] as? String ?? ""
+                       let documentID = document.documentID
+                       if postUserID == userID{
+                           postCollection.document(documentID).delete { error in
+                               if let error = error {
+                                   print("Error deleting user data:", error.localizedDescription)
+                               }
+                           }
+                       }
                    }
                }
            }
