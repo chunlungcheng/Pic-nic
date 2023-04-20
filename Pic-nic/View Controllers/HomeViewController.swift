@@ -16,9 +16,9 @@ extension Notification.Name {
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
-    let refreshControl = UIRefreshControl()
     
     var datasource = [Post]()
+    let refreshControl = UIRefreshControl()
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -107,6 +107,20 @@ extension HomeViewController: UITableViewDataSource {
         cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
         
+        // Add photo save
+        if let image = cell.postImageView.image {
+            if image.size.width == 0 || image.size.height == 0 {
+                // Image is empty
+                print("Image is empty")
+                let errorAlert = UIAlertController(title: "Error", message: "Image is empty", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+            } else {
+                // Image is not empty
+                cell.savePhotoButton.addTarget(self, action: #selector(savePhotoButtonTapped(_:)), for: .touchUpInside)
+            }
+        }
+        
         // Format date
         cell.timeLabel.text = dateString(date: post.date?.dateValue() ?? Date.now)
         
@@ -184,9 +198,9 @@ extension HomeViewController: UITableViewDataSource {
         return cell
     }
     
+    // like the post and update the number of likes on the Firestore and the post
     @objc func likeButtonTapped(_ sender: UIButton) {
         guard let cell = sender.superview?.superview?.superview as? PostCell, let indexPath = tableview.indexPath(for: cell) else { return }
-        print("like button tapped")
         let post = datasource[indexPath.row]
         let currentUserID = Auth.auth().currentUser?.uid ?? ""
         let docRef = db.collection("locations").document("Austin").collection("posts").document(post.documentID)
@@ -196,7 +210,6 @@ extension HomeViewController: UITableViewDataSource {
                 // Handle the user data here
                 let likeBy = data?["likeBy"] as? [String] ?? [String]()
                 let hasLiked = likeBy.contains(currentUserID)
-                
                 
                 if hasLiked {
                     // Post was already liked by user, time to unlike it
@@ -229,6 +242,36 @@ extension HomeViewController: UITableViewDataSource {
                 print("Document does not exist")
             }
         }
+    }
+    
+    // Ask user if he want to save the photo. If yes, save it to the local device.
+    @objc func savePhotoButtonTapped(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview?.superview as? PostCell, let indexPath = tableview.indexPath(for: cell) else { return }
+        let post = datasource[indexPath.row]
+        let alertController = UIAlertController(title: "Save Photo", message: "Do you want to save this photo to your device?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let saveAction = UIAlertAction(title: "Save", style: .default) { _ in
+                // Code to save photo goes here
+                UIImageWriteToSavedPhotosAlbum(post.image, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
+            }
+        alertController.addAction(cancelAction)
+        alertController.addAction(saveAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    // To confirm that photo is saved
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+            if let error = error {
+                // Handle error
+                let errorAlert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(errorAlert, animated: true, completion: nil)
+            } else {
+                // Photo saved successfully
+                let alertControlller = UIAlertController(title: "Photo Saved", message: "Photo is sucessfully saved to photo library", preferredStyle: .alert)
+                alertControlller.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alertControlller, animated: true, completion: nil)
+            }
     }
     
     func dateString(date: Date) -> String? {
