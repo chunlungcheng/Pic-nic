@@ -20,6 +20,8 @@ class HomeViewController: UIViewController {
     var datasource = [Post]()
     let refreshControl = UIRefreshControl()
     let db = Firestore.firestore()
+    let commentSegue = "commentSeg"
+    var postID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,6 +101,7 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PostCell.reuseIdentifer, for: indexPath) as! PostCell
         let post = datasource[indexPath.row]
+        
         // Add double tap
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(sender:)))
         doubleTapGesture.numberOfTapsRequired = 2
@@ -106,6 +109,9 @@ extension HomeViewController: UITableViewDataSource {
         
         cell.locationLabel.text = "Austin"
         cell.postImageView.image = post.image
+        
+        // Add action to comment button
+        cell.commentButton.addTarget(self, action: #selector(commentButtonTapped(_:)), for: .touchUpInside)
         
         // Add photo save
         if let image = cell.postImageView.image {
@@ -259,6 +265,13 @@ extension HomeViewController: UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
     }
     
+    // Ask user if he want to save the photo. If yes, save it to the local device.
+    @objc func commentButtonTapped(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview?.superview as? PostCell, let indexPath = tableview.indexPath(for: cell) else { return }
+        let post = datasource[indexPath.row]
+        postID = post.documentID
+        performSegue(withIdentifier: commentSegue, sender: nil)
+    }
     // To confirm that photo is saved
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
             if let error = error {
@@ -280,6 +293,14 @@ extension HomeViewController: UITableViewDataSource {
         formatter.maximumUnitCount = 1
         formatter.allowedUnits = [.day, .hour, .minute]
         return (formatter.string(from: date, to: Date.now) ?? "unknown") + " ago"
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == commentSegue,
+           let nextVC = segue.destination as? CommentViewController{
+            nextVC.postID = postID
+            print(postID)
+        }
     }
     
 }

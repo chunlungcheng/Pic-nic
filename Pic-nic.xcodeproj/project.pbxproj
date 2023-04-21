@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1253642729B839000042C8EE /* CommentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1253642629B839000042C8EE /* CommentViewController.swift */; };
 		12661FD529B557F20086DE5A /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12661FD429B557F20086DE5A /* CameraViewController.swift */; };
+		12B33C2429F2230D00F88D43 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12B33C2329F2230D00F88D43 /* CommentCell.swift */; };
 		12EA302C29DB8FB6007D0CC9 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 12EA302B29DB8FB6007D0CC9 /* Setting.storyboard */; };
 		12EA302E29DB8FD8007D0CC9 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12EA302D29DB8FD8007D0CC9 /* SettingViewController.swift */; };
 		602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602858C829B66BD70093BCC6 /* LoginViewController.swift */; };
@@ -38,6 +39,7 @@
 /* Begin PBXFileReference section */
 		1253642629B839000042C8EE /* CommentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentViewController.swift; sourceTree = "<group>"; };
 		12661FD429B557F20086DE5A /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
+		12B33C2329F2230D00F88D43 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		12EA302B29DB8FB6007D0CC9 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		12EA302D29DB8FD8007D0CC9 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		602858C829B66BD70093BCC6 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				DA53816829B3F68F00873AF4 /* PostCell.swift */,
+				12B33C2329F2230D00F88D43 /* CommentCell.swift */,
 				DA53816D29B400CC00873AF4 /* CircularImageView.swift */,
 			);
 			path = "Custom Views";
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				12B33C2429F2230D00F88D43 /* CommentCell.swift in Sources */,
 				1253642729B839000042C8EE /* CommentViewController.swift in Sources */,
 				12EA302E29DB8FD8007D0CC9 /* SettingViewController.swift in Sources */,
 				602858C929B66BD70093BCC6 /* LoginViewController.swift in Sources */,

@@ -19,8 +19,8 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var likesLabel: UILabel!
     @IBOutlet weak var likesButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
-    
     @IBOutlet weak var heartImageView: UIImageView!
+    @IBOutlet weak var commentButton: UIButton!
     
     func animateHeart() {
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {

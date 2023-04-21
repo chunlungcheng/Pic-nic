@@ -103,9 +103,6 @@
                                                             <rect key="frame" x="50.666666666666686" y="0.0" width="52.333333333333343" height="34.333333333333336"/>
                                                             <state key="normal" title="Button"/>
                                                             <buttonConfiguration key="configuration" style="plain" image="message" catalog="system"/>
-                                                            <connections>
-                                                                <segue destination="8B1-nd-SGn" kind="show" id="iBl-J6-fP9"/>
-                                                            </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hGp-xv-5oS">
                                                             <rect key="frame" x="103" y="0.0" width="48.333333333333343" height="34.333333333333336"/>
@@ -148,6 +145,7 @@
                                             <constraint firstAttribute="trailing" secondItem="twx-Fw-Jno" secondAttribute="trailing" constant="20.666666666666629" id="ESp-t6-UDF"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="commentButton" destination="NeU-9b-FkR" id="EES-i7-Nrk"/>
                                             <outlet property="editButton" destination="GdF-vI-CWd" id="2SP-Yf-TkX"/>
                                             <outlet property="heartImageView" destination="d1C-1J-vR1" id="Ma7-jo-dXl"/>
                                             <outlet property="likesButton" destination="xX0-Db-fxN" id="6r9-IE-g9l"/>
@@ -209,6 +207,7 @@
                     </view>
                     <connections>
                         <outlet property="tableview" destination="GVr-fP-72F" id="kXR-Nl-rfG"/>
+                        <segue destination="8B1-nd-SGn" kind="presentation" identifier="commentSeg" modalPresentationStyle="fullScreen" id="GGW-bD-ajM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I6y-mE-azx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
