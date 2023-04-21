@@ -65,6 +65,29 @@ class CommentViewController: UIViewController, UITableViewDelegate, UITableViewD
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let row = indexPath.row
+            // Remove the item from your data source
+            commentList.remove(at: row)
+            postBy.remove(at: row)
+            let postRef = db.collection("locations").document("Austin").collection("posts").document(postID)
+            postRef.updateData([
+                "comment": commentList,
+                "postBy": postBy
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                } else {
+                    print("Document successfully updated")
+                }
+            }
+            
+            // Delete the row from the table view
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 70
     }
