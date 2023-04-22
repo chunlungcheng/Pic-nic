@@ -17,6 +17,7 @@ class SettingViewController: UIViewController {
     
     let signOutSegueID = "signOutSegue"
     var profileChanged = false
+    var isInformationUpdated = false // Add a flag variable
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,7 +88,11 @@ class SettingViewController: UIViewController {
             let db = Firestore.firestore()
             let userID = user.uid
             let docRef = db.collection("users").document(userID)
+            var isInformationUpdated = false // Add a flag variable
+            let dispatchGroup = DispatchGroup() // Create a DispatchGroup
+            
             if !firstnameTextField.text!.isEmpty{
+                dispatchGroup.enter() // Enter the DispatchGroup
                 docRef.updateData([
                     "firstName": firstnameTextField.text!
                 ]) { err in
@@ -95,9 +100,16 @@ class SettingViewController: UIViewController {
                         let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
                         controller.addAction(UIAlertAction(title: "OK", style: .default))
                         self.present(controller, animated: true)
+                    } else {
+                        isInformationUpdated = true // Set the flag to true
+                        print("1")
                     }
+                    dispatchGroup.leave() // Leave the DispatchGroup
                 }
-            } else if !lastnameTextField.text!.isEmpty{
+            }
+            
+            if !lastnameTextField.text!.isEmpty{
+                dispatchGroup.enter() // Enter the DispatchGroup
                 docRef.updateData([
                     "lastName": lastnameTextField.text!
                 ]) { err in
@@ -105,12 +117,19 @@ class SettingViewController: UIViewController {
                         let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
                         controller.addAction(UIAlertAction(title: "OK", style: .default))
                         self.present(controller, animated: true)
+                    } else {
+                        isInformationUpdated = true // Set the flag to true
+                        print("2")
                     }
+                    dispatchGroup.leave() // Leave the DispatchGroup
                 }
-            } else if profileChanged{
+            }
+            
+            if profileChanged{
                 var imageData:Data!
                 if let image = self.profilePic.image{
                     imageData = image.jpegData(compressionQuality: 0.1)
+                    dispatchGroup.enter() // Enter the DispatchGroup
                     docRef.updateData([
                         "profilePicture": imageData!
                     ]) { err in
@@ -118,18 +137,27 @@ class SettingViewController: UIViewController {
                             let controller = UIAlertController(title:"Error", message: "\(err.localizedDescription)", preferredStyle: .alert)
                             controller.addAction(UIAlertAction(title: "OK", style: .default))
                             self.present(controller, animated: true)
+                        }else{
+                            isInformationUpdated = true // Set the flag to true
+                            print("3")
                         }
+                        dispatchGroup.leave() // Leave the DispatchGroup
                     }
                 }
-            } else {
-                return
             }
-            NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
-            let controller = UIAlertController(title:"Successfully Updated", message: "User information successfully updated", preferredStyle: .alert)
-            controller.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(controller, animated: true)
+            
+            dispatchGroup.notify(queue: .main) { // Show success alert controller after all updates have completed
+                if isInformationUpdated { // Show success alert controller only if the flag is true
+                    NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
+                    let controller = UIAlertController(title:"Successfully Updated", message: "User information successfully updated", preferredStyle: .alert)
+                    controller.addAction(UIAlertAction(title: "OK", style: .default))
+                    self.present(controller, animated: true)
+                }
+            }
         }
     }
+
+
     
     // Sign out and return back to Login screen
     @IBAction func signoutButtonPressed(_ sender: Any) {

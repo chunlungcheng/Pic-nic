@@ -44,7 +44,7 @@ class HomeViewController: UIViewController {
     
     func downloadPosts() {
         let postsRef = db.collection("locations").document("Austin").collection("posts") // DO NOT CHANGE
-        postsRef.getDocuments { (snapshot, error) in
+        postsRef.addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("Error fetching documents: \(error)")
                 return
@@ -74,12 +74,10 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
 }
 
-
 extension HomeViewController: UITableViewDelegate {
-    
+    // do nothing?
 }
 
 extension HomeViewController: UITableViewDataSource {
