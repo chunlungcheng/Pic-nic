@@ -147,8 +147,18 @@ class SettingViewController: UIViewController {
                 if isInformationUpdated { // Show success alert controller only if the flag is true
                     NotificationCenter.default.post(name: Notification.Name.updateTableView, object: "")
                     let controller = UIAlertController(title:"Successfully Updated", message: "User information successfully updated", preferredStyle: .alert)
-                    controller.addAction(UIAlertAction(title: "OK", style: .default))
-                    self.present(controller, animated: true)
+                    let okAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+                        if !self.firstnameTextField.text!.isEmpty{
+                            self.firstnameTextField.placeholder = self.firstnameTextField.text!
+                            self.firstnameTextField.text = ""
+                        }
+                        if !self.lastnameTextField.text!.isEmpty{
+                            self.lastnameTextField.placeholder = self.lastnameTextField.text!
+                            self.lastnameTextField.text = ""
+                        }
+                    }
+                    controller.addAction(okAction)
+                    self.present(controller, animated: true, completion: nil)
                 }
             }
         }
