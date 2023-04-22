@@ -102,7 +102,6 @@ class SettingViewController: UIViewController {
                         self.present(controller, animated: true)
                     } else {
                         isInformationUpdated = true // Set the flag to true
-                        print("1")
                     }
                     dispatchGroup.leave() // Leave the DispatchGroup
                 }
@@ -119,7 +118,6 @@ class SettingViewController: UIViewController {
                         self.present(controller, animated: true)
                     } else {
                         isInformationUpdated = true // Set the flag to true
-                        print("2")
                     }
                     dispatchGroup.leave() // Leave the DispatchGroup
                 }
@@ -139,7 +137,6 @@ class SettingViewController: UIViewController {
                             self.present(controller, animated: true)
                         }else{
                             isInformationUpdated = true // Set the flag to true
-                            print("3")
                         }
                         dispatchGroup.leave() // Leave the DispatchGroup
                     }
@@ -156,8 +153,6 @@ class SettingViewController: UIViewController {
             }
         }
     }
-
-
     
     // Sign out and return back to Login screen
     @IBAction func signoutButtonPressed(_ sender: Any) {
