@@ -13,7 +13,7 @@
             <objects>
                 <viewController id="BuE-da-jpM" customClass="SignUpViewController" customModule="Pic_nic" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mk0-8M-twO">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SIGN UP!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7T-OU-F3I">
@@ -154,7 +154,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="gray" title="Sign-Up"/>
                                 <connections>
-                                    <segue destination="BuE-da-jpM" kind="show" identifier="SignUpSegue" id="mo3-oq-yCz"/>
+                                    <segue destination="BuE-da-jpM" kind="presentation" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="mo3-oq-yCz"/>
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pic-Nic.png" translatesAutoresizingMaskIntoConstraints="NO" id="JSU-QL-d6T">
