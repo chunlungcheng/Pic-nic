@@ -180,7 +180,11 @@ extension HomeViewController: UITableViewDataSource {
                 let firstname = data?["firstName"] as? String ?? ""
                 let lastname = data?["lastName"] as? String ?? ""
                 let name = firstname + " " + lastname
-                self.datasource[indexPath.row].userName = name
+                // Find the post in the datasource
+                guard let index = self.datasource.firstIndex(where: { $0.date == post.date }) else {
+                    return
+                }
+                self.datasource[index].userName = name
                 // set profile picture
                 if let imageData = data?["profilePicture"] as? Data {
                     if imageData.count != 0 {
@@ -188,7 +192,7 @@ extension HomeViewController: UITableViewDataSource {
                         let image = UIImage(data: imageData)
                         let resizedImage = image!.resizeImage(targetSize: CGSize(width: 40, height: 40))
                         // Use the image as needed
-                        self.datasource[indexPath.row].profilePicture = resizedImage
+                        self.datasource[index].profilePicture = resizedImage
                     }
                     self.tableview.reloadRows(at: [indexPath], with: .automatic)
                 } else {

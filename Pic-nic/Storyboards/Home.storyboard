@@ -6,7 +6,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -28,9 +27,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GVr-fP-72F">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="GVr-fP-72F">
                                 <rect key="frame" x="-6" y="103" width="395" height="669"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="PostCell" rowHeight="400" id="U8i-PK-nRv" customClass="PostCell" customModule="Pic_nic" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="395" height="400"/>
@@ -120,6 +119,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                             <constraints>
                                                 <constraint firstItem="opo-3X-H1w" firstAttribute="leading" secondItem="rWF-cJ-Yah" secondAttribute="leading" id="19P-Ab-qGp"/>
                                                 <constraint firstItem="twx-Fw-Jno" firstAttribute="top" secondItem="opo-3X-H1w" secondAttribute="bottom" constant="8" symbolic="YES" id="GLJ-xR-iw2"/>
@@ -162,8 +162,10 @@
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rvt-x7-4yx" propertyAccessControl="all">
                                 <rect key="frame" x="-6" y="59" width="395" height="44"/>
+                                <color key="backgroundColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="barTintColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <items>
-                                    <navigationItem title="Pic-nic" id="cpq-4S-Kbz">
+                                    <navigationItem id="cpq-4S-Kbz">
                                         <barButtonItem key="leftBarButtonItem" title="Item" style="done" id="DnI-aC-J6A">
                                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="eMf-jS-CGt">
                                                 <rect key="frame" x="15.999999999999993" y="5" width="101.33333333333331" height="34.333333333333336"/>
@@ -191,10 +193,15 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="nmL-97-uen"/>
                                 </items>
+                                <color key="barTintColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </toolbar>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Pic-Nic.png" translatesAutoresizingMaskIntoConstraints="NO" id="ywH-Y8-Q26">
+                                <rect key="frame" x="68" y="29" width="257" height="78"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="imI-m3-AnS"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.97647058959999999" green="0.96078431610000004" blue="0.9098039269" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="rvt-x7-4yx" firstAttribute="leading" secondItem="GVr-fP-72F" secondAttribute="leading" id="6ON-Pu-aQ3" propertyAccessControl="all"/>
                             <constraint firstItem="JbX-ji-kK8" firstAttribute="top" secondItem="GVr-fP-72F" secondAttribute="bottom" id="HZl-oO-yJr" propertyAccessControl="all"/>
@@ -237,6 +244,7 @@
     </scenes>
     <resources>
         <image name="Evan.jpg" width="1235" height="1235"/>
+        <image name="Pic-Nic.png" width="461" height="128"/>
         <image name="ellipsis" catalog="system" width="128" height="37"/>
         <image name="gearshape.fill" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
@@ -244,8 +252,5 @@
         <image name="message" catalog="system" width="128" height="116"/>
         <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.down" catalog="system" width="121" height="128"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
