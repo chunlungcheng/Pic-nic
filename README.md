@@ -1,4 +1,14 @@
 # Pic-nic
+Group number: 3  
+Team members: Isaiah Suarez, Chun-Lung Cheng, Arjun Hegde  
+Name of project: Pic-nic  
+Dependencies: Xcode 14.2, Swift 5
+
+### Special Intructions
+An account you can use if you don't want to create one is  
+Username: 1@gmail.com  
+Password: 111111  
+
 See what is going on in your city! Discover things to do or sights to see from others in your area, updated daily. Post a photo to your city’s feed, whether it be a good cup of coffee, a sunset, or a delicious meal. 
 You can share, like, or comment on any photo you see to get more detail. Each photo is geotagged so you can see where it was taken. Think of Instagram but for only your city, and the feed is deleted at the end of each day. 
 
